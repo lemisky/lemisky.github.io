@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lemisky.github.io","root":"/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="探测目标主机操作系统类型示例1 nmap aliyun.com -OStarting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2020-11-26 20:04 ?D1ú±ê×?ê±??Nmap scan report for aliyun.com (106.11.248.144)Host is up (0.025s latency).Other addresses fo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nmap小技巧">
+<meta property="og:url" content="https://lemisky.github.io/2020/11/26/nmap%E5%B0%8F%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:site_name" content="22:22">
+<meta property="og:description" content="探测目标主机操作系统类型示例1 nmap aliyun.com -OStarting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2020-11-26 20:04 ?D1ú±ê×?ê±??Nmap scan report for aliyun.com (106.11.248.144)Host is up (0.025s latency).Other addresses fo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-26T12:03:15.000Z">
+<meta property="article:modified_time" content="2020-11-26T12:18:52.883Z">
+<meta property="article:author" content="foyou">
+<meta property="article:tag" content="nmap">
+<meta property="article:tag" content="端口扫描">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lemisky.github.io/2020/11/26/nmap%E5%B0%8F%E6%8A%80%E5%B7%A7/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>nmap小技巧 | 22:22</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">22:22</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blogs of Xiaomi Wang</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A2%E6%B5%8B%E7%9B%AE%E6%A0%87%E4%B8%BB%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">探测目标主机操作系统类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B1"><span class="nav-number">1.1.</span> <span class="nav-text">示例1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B2"><span class="nav-number">1.2.</span> <span class="nav-text">示例2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B3"><span class="nav-number">1.3.</span> <span class="nav-text">示例3</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%AB%E6%8F%8F%E7%9B%AE%E6%A0%87%E4%B8%BB%E6%9C%BA%E7%AB%AF%E5%8F%A3%E5%BC%80%E6%94%BE%E6%83%85%E5%86%B5"><span class="nav-number">2.</span> <span class="nav-text">扫描目标主机端口开放情况</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">foyou</p>
+  <div class="site-description" itemprop="description">分享每一个问题</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/11/26/nmap%E5%B0%8F%E6%8A%80%E5%B7%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          nmap小技巧
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-11-26 20:03:15 / 修改时间：20:18:52" itemprop="dateCreated datePublished" datetime="2020-11-26T20:03:15+08:00">2020-11-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="探测目标主机操作系统类型"><a href="#探测目标主机操作系统类型" class="headerlink" title="探测目标主机操作系统类型"></a>探测目标主机操作系统类型</h1><h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h2><blockquote>
+<p><strong>nmap aliyun.com -O</strong><br>Starting Nmap 7.91 ( <a target="_blank" rel="noopener" href="https://nmap.org/">https://nmap.org</a> ) at 2020-11-26 20:04 ?D1ú±ê×?ê±??<br>Nmap scan report for aliyun.com (106.11.248.144)<br>Host is up (0.025s latency).<br>Other addresses for aliyun.com (not scanned): 106.11.172.56 106.11.172.51 106.11.172.9 140.205.135.3 140.205.60.46 106.11.253.86 106.11.253.83 106.11.249.99 106.11.248.146<br>Not shown: 998 filtered ports<br>PORT    STATE SERVICE<br>80/tcp  open  http<br>443/tcp open  https<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device type: proxy server<br>Running (JUST GUESSING): Blue Coat embedded (86%)<br>OS CPE: cpe:/h:bluecoat:packetshaper<br>Aggressive OS guesses: Blue Coat PacketShaper appliance (86%)<br>No exact OS matches for host (test conditions non-ideal).</p>
+<p>OS detection performed. Please report any incorrect results at <a target="_blank" rel="noopener" href="https://nmap.org/submit/">https://nmap.org/submit/</a> .<br>Nmap done: 1 IP address (1 host up) scanned in 10.86 seconds</p>
+</blockquote>
+<p>探测扫描结果:</p>
+<p><strong>Aggressive OS guesses: Blue Coat PacketShaper appliance (86%)</strong></p>
+<a id="more"></a>
+
+<h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h2><blockquote>
+<p><strong>nmap -O 123.57.145.35</strong><br>Starting Nmap 7.91 ( <a target="_blank" rel="noopener" href="https://nmap.org/">https://nmap.org</a> ) at 2020-11-26 20:08 ?D1ú±ê×?ê±??<br>Nmap scan report for 123.57.145.35<br>Host is up (0.065s latency).<br>Not shown: 996 filtered ports<br>PORT     STATE  SERVICE<br>22/tcp   open   ssh<br>80/tcp   closed http<br>3306/tcp closed mysql<br>3389/tcp closed ms-wbt-server<br>Aggressive OS guesses: Linux 4.4 (93%), Linux 3.10 - 3.12 (92%), Linux 3.8 (89%), Linux 4.9 (89%), Linux 4.0 (89%), Linux 3.10 - 3.16 (88%), Linux 3.11 - 4.1 (88%), Linux 2.6.32 (88%), Linux 3.5 (88%), Linux 4.2 (88%)<br>No exact OS matches for host (test conditions non-ideal).</p>
+<p>OS detection performed. Please report any incorrect results at <a target="_blank" rel="noopener" href="https://nmap.org/submit/">https://nmap.org/submit/</a> .<br>Nmap done: 1 IP address (1 host up) scanned in 22.36 seconds</p>
+</blockquote>
+<p>探测扫描结果:</p>
+<p><strong>Aggressive OS guesses: Linux 4.4 (93%), Linux 3.10 - 3.12 (92%), Linux 3.8 (89%), Linux 4.9 (89%), Linux 4.0 (89%), Linux 3.10 - 3.16 (88%), Linux 3.11 - 4.1 (88%), Linux 2.6.32 (88%), Linux 3.5 (88%), Linux 4.2 (88%)</strong></p>
+<h2 id="示例3"><a href="#示例3" class="headerlink" title="示例3"></a>示例3</h2><blockquote>
+<p><strong>nmap -O 39.96.251.199</strong><br>Starting Nmap 7.91 ( <a target="_blank" rel="noopener" href="https://nmap.org/">https://nmap.org</a> ) at 2020-11-26 20:13 ?D1ú±ê×?ê±??<br>Nmap scan report for 39.96.251.199<br>Host is up (0.030s latency).</p>
+<p>PORT      STATE    SERVICE<br>1/tcp     open     tcpmux<br>3/tcp     open     compressnet<br>4/tcp     open     unknown<br>6/tcp     open     unknown<br>7/tcp     open     echo<br>9/tcp     open     discard<br>13/tcp    open     daytime<br>17/tcp    open     qotd<br>19/tcp    open     chargen</p>
+<p>…..</p>
+<p>64623/tcp open     unknown<br>64680/tcp open     unknown<br>65000/tcp open     unknown<br>65129/tcp open     unknown<br>65389/tcp open     unknown<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>OS fingerprint not ideal because: Missing a closed TCP port so results incomplete<br>No OS matches for host</p>
+<p>OS detection performed. Please report any incorrect results at <a target="_blank" rel="noopener" href="https://nmap.org/submit/">https://nmap.org/submit/</a> .<br>Nmap done: 1 IP address (1 host up) scanned in 16.41 seconds</p>
+</blockquote>
+<p>不一定所有的都能扫描出来:</p>
+<p><strong>OS fingerprint not ideal because: Missing a closed TCP port so results incomplete<br>No OS matches for host</strong></p>
+<h1 id="扫描目标主机端口开放情况"><a href="#扫描目标主机端口开放情况" class="headerlink" title="扫描目标主机端口开放情况"></a>扫描目标主机端口开放情况</h1><p>下面结果也能反映出常用协议及默认端口</p>
+<blockquote>
+<p><strong>nmap -osscan-guest 39.96.251.199</strong><br>Starting Nmap 7.91 ( <a target="_blank" rel="noopener" href="https://nmap.org/">https://nmap.org</a> ) at 2020-11-26 20:16 ?D1ú±ê×?ê±??<br>Nmap scan report for 39.96.251.199<br>Host is up (0.031s latency).</p>
+<p>PORT      STATE    SERVICE<br>1/tcp     open     tcpmux<br>3/tcp     open     compressnet<br>4/tcp     open     unknown<br>6/tcp     open     unknown<br>7/tcp     open     echo<br>9/tcp     open     discard<br>13/tcp    open     daytime<br>17/tcp    open     qotd<br>19/tcp    open     chargen<br>20/tcp    open     ftp-data<br>21/tcp    open     ftp<br>22/tcp    open     ssh<br>23/tcp    open     telnet<br>24/tcp    open     priv-mail<br>25/tcp    open     smtp<br>26/tcp    open     rsftp<br>30/tcp    open     unknown<br>32/tcp    open     unknown<br>33/tcp    open     dsp<br>37/tcp    open     time<br>42/tcp    open     nameserver<br>43/tcp    open     whois<br>49/tcp    open     tacacs<br>53/tcp    open     domain<br>70/tcp    open     gopher<br>79/tcp    open     finger<br>80/tcp    open     http<br>81/tcp    open     hosts2-ns<br>82/tcp    open     xfer<br>83/tcp    open     mit-ml-dev<br>84/tcp    open     ctf<br>85/tcp    open     mit-ml-dev<br>88/tcp    open     kerberos-sec<br>89/tcp    open     su-mit-tg<br>90/tcp    open     dnsix<br>99/tcp    open     metagram<br>100/tcp   open     newacct<br>106/tcp   open     pop3pw<br>109/tcp   open     pop2<br>110/tcp   open     pop3<br>111/tcp   open     rpcbind<br>113/tcp   open     ident<br>119/tcp   open     nntp<br>125/tcp   open     locus-map<br>135/tcp   filtered msrpc<br>139/tcp   filtered netbios-ssn<br>143/tcp   open     imap<br>144/tcp   open     news<br>146/tcp   open     iso-tp0<br>161/tcp   open     snmp<br>163/tcp   open     cmip-man<br>179/tcp   open     bgp<br>199/tcp   open     smux<br>211/tcp   open     914c-g<br>212/tcp   open     anet<br>222/tcp   open     rsh-spx<br>254/tcp   open     unknown<br>255/tcp   open     unknown<br>256/tcp   open     fw1-secureremote<br>259/tcp   open     esro-gen<br>264/tcp   open     bgmp<br>280/tcp   open     http-mgmt<br>301/tcp   open     unknown<br>306/tcp   open     unknown<br>311/tcp   open     asip-webadmin<br>340/tcp   open     unknown<br>366/tcp   open     odmr<br>389/tcp   open     ldap<br>406/tcp   open     imsp<br>407/tcp   open     timbuktu<br>416/tcp   open     silverplatter<br>417/tcp   open     onmux<br>425/tcp   open     icad-el<br>427/tcp   open     svrloc<br>443/tcp   open     https<br>444/tcp   open     snpp<br>445/tcp   filtered microsoft-ds<br>458/tcp   open     appleqtc<br>464/tcp   open     kpasswd5<br>465/tcp   open     smtps<br>481/tcp   open     dvs<br>497/tcp   open     retrospect<br>500/tcp   open     isakmp<br>512/tcp   open     exec<br>513/tcp   open     login<br>514/tcp   open     shell<br>515/tcp   open     printer<br>524/tcp   open     ncp<br>541/tcp   open     uucp-rlogin<br>543/tcp   open     klogin<br>544/tcp   open     kshell<br>545/tcp   open     ekshell<br>548/tcp   open     afp<br>554/tcp   open     rtsp<br>555/tcp   open     dsf<br>563/tcp   open     snews<br>587/tcp   open     submission<br>593/tcp   filtered http-rpc-epmap<br>616/tcp   open     sco-sysmgr<br>617/tcp   open     sco-dtmgr<br>625/tcp   open     apple-xsrvr-admin<br>631/tcp   open     ipp<br>636/tcp   open     ldapssl<br>646/tcp   open     ldp<br>648/tcp   open     rrp<br>666/tcp   open     doom<br>667/tcp   open     disclose<br>668/tcp   open     mecomm<br>683/tcp   open     corba-iiop<br>687/tcp   open     asipregistry<br>691/tcp   open     resvc<br>700/tcp   open     epp<br>705/tcp   open     agentx<br>711/tcp   open     cisco-tdp<br>714/tcp   open     iris-xpcs<br>720/tcp   open     unknown<br>722/tcp   open     unknown<br>726/tcp   open     unknown<br>749/tcp   open     kerberos-adm<br>765/tcp   open     webster<br>777/tcp   open     multiling-http<br>783/tcp   open     spamassassin<br>787/tcp   open     qsc<br>800/tcp   open     mdbs_daemon<br>801/tcp   open     device<br>808/tcp   open     ccproxy-http<br>843/tcp   open     unknown<br>873/tcp   open     rsync<br>880/tcp   open     unknown<br>888/tcp   open     accessbuilder<br>898/tcp   open     sun-manageconsole<br>900/tcp   open     omginitialrefs<br>901/tcp   open     samba-swat<br>902/tcp   open     iss-realsecure<br>903/tcp   open     iss-console-mgr<br>911/tcp   open     xact-backup<br>912/tcp   open     apex-mesh<br>981/tcp   open     unknown<br>987/tcp   open     unknown<br>990/tcp   open     ftps<br>992/tcp   open     telnets<br>993/tcp   open     imaps<br>995/tcp   open     pop3s<br>999/tcp   open     garcon<br>1000/tcp  open     cadlock<br>1001/tcp  open     webpush<br>1002/tcp  open     windows-icfw<br>1007/tcp  open     unknown<br>1009/tcp  open     unknown<br>1010/tcp  open     surf<br>1011/tcp  open     unknown<br>1021/tcp  open     exp1<br>1022/tcp  open     exp2<br>1023/tcp  open     netvenuechat<br>1024/tcp  open     kdm<br>1025/tcp  open     NFS-or-IIS<br>1026/tcp  open     LSA-or-nterm<br>1027/tcp  open     IIS<br>1028/tcp  open     unknown<br>1029/tcp  open     ms-lsa<br>1030/tcp  open     iad1<br>1031/tcp  open     iad2<br>1032/tcp  open     iad3<br>1033/tcp  open     netinfo<br>1034/tcp  open     zincite-a<br>1035/tcp  open     multidropper<br>1036/tcp  open     nsstp<br>1037/tcp  open     ams<br>1038/tcp  open     mtqp<br>1039/tcp  open     sbl<br>1040/tcp  open     netsaint<br>1041/tcp  open     danf-ak2<br>1042/tcp  open     afrog<br>1043/tcp  open     boinc<br>1044/tcp  open     dcutility<br>1045/tcp  open     fpitp<br>1046/tcp  open     wfremotertm<br>1047/tcp  open     neod1<br>1048/tcp  open     neod2<br>1049/tcp  open     td-postman<br>1050/tcp  open     java-or-OTGfileshare<br>1051/tcp  open     optima-vnet<br>1052/tcp  open     ddt<br>1053/tcp  open     remote-as<br>1054/tcp  open     brvread<br>1055/tcp  open     ansyslmd<br>1056/tcp  open     vfo<br>1057/tcp  open     startron<br>1058/tcp  open     nim<br>1059/tcp  open     nimreg<br>1060/tcp  open     polestar<br>1061/tcp  open     kiosk<br>1062/tcp  open     veracity<br>1063/tcp  open     kyoceranetdev<br>1064/tcp  open     jstel<br>1065/tcp  open     syscomlan<br>1066/tcp  open     fpo-fns<br>1067/tcp  open     instl_boots<br>1068/tcp  open     instl_bootc<br>1069/tcp  open     cognex-insight<br>1070/tcp  open     gmrupdateserv<br>1071/tcp  open     bsquare-voip<br>1072/tcp  open     cardax<br>1073/tcp  open     bridgecontrol<br>1074/tcp  open     warmspotMgmt<br>1075/tcp  open     rdrmshc<br>1076/tcp  open     sns_credit<br>1077/tcp  open     imgames<br>1078/tcp  open     avocent-proxy<br>1079/tcp  open     asprovatalk<br>1080/tcp  open     socks<br>1081/tcp  open     pvuniwien<br>1082/tcp  open     amt-esd-prot<br>1083/tcp  open     ansoft-lm-1<br>1084/tcp  open     ansoft-lm-2<br>1085/tcp  open     webobjects<br>1086/tcp  open     cplscrambler-lg<br>1087/tcp  open     cplscrambler-in<br>1088/tcp  open     cplscrambler-al<br>1089/tcp  open     ff-annunc<br>1090/tcp  open     ff-fms<br>1091/tcp  open     ff-sm<br>1092/tcp  open     obrpd<br>1093/tcp  open     proofd<br>1094/tcp  open     rootd<br>1095/tcp  open     nicelink<br>1096/tcp  open     cnrprotocol<br>1097/tcp  open     sunclustermgr<br>1098/tcp  open     rmiactivation<br>1099/tcp  open     rmiregistry<br>1100/tcp  open     mctp<br>1102/tcp  open     adobeserver-1<br>1104/tcp  open     xrl<br>1105/tcp  open     ftranhc<br>1106/tcp  open     isoipsigport-1<br>1107/tcp  open     isoipsigport-2<br>1108/tcp  open     ratio-adp<br>1110/tcp  open     nfsd-status<br>1111/tcp  open     lmsocialserver<br>1112/tcp  open     msql<br>1113/tcp  open     ltp-deepspace<br>1114/tcp  open     mini-sql<br>1117/tcp  open     ardus-mtrns<br>1119/tcp  open     bnetgame<br>1121/tcp  open     rmpp<br>1122/tcp  open     availant-mgr<br>1123/tcp  open     murray<br>1124/tcp  open     hpvmmcontrol<br>1126/tcp  open     hpvmmdata<br>1130/tcp  open     casp<br>1131/tcp  open     caspssl<br>1132/tcp  open     kvm-via-ip<br>1137/tcp  open     trim<br>1138/tcp  open     encrypted_admin<br>1141/tcp  open     mxomss<br>1145/tcp  open     x9-icue<br>1147/tcp  open     capioverlan<br>1148/tcp  open     elfiq-repl<br>1149/tcp  open     bvtsonar<br>1151/tcp  open     unizensus<br>1152/tcp  open     winpoplanmess<br>1154/tcp  open     resacommunity<br>1163/tcp  open     sddp<br>1164/tcp  open     qsm-proxy<br>1165/tcp  open     qsm-gui<br>1166/tcp  open     qsm-remote<br>1169/tcp  open     tripwire<br>1174/tcp  open     fnet-remote-ui<br>1175/tcp  open     dossier<br>1183/tcp  open     llsurfup-http<br>1185/tcp  open     catchpole<br>1186/tcp  open     mysql-cluster<br>1187/tcp  open     alias<br>1192/tcp  open     caids-sensor<br>1198/tcp  open     cajo-discovery<br>1199/tcp  open     dmidi<br>1201/tcp  open     nucleus-sand<br>1213/tcp  open     mpc-lifenet<br>1216/tcp  open     etebac5<br>1217/tcp  open     hpss-ndapi<br>1218/tcp  open     aeroflight-ads<br>1233/tcp  open     univ-appserver<br>1234/tcp  open     hotline<br>1236/tcp  open     bvcontrol<br>1244/tcp  open     isbconference1<br>1247/tcp  open     visionpyramid<br>1248/tcp  open     hermes<br>1259/tcp  open     opennl-voice<br>1271/tcp  open     excw<br>1272/tcp  open     cspmlockmgr<br>1277/tcp  open     miva-mqs<br>1287/tcp  open     routematch<br>1296/tcp  open     dproxy<br>1300/tcp  open     h323hostcallsc<br>1301/tcp  open     ci3-software-1<br>1309/tcp  open     jtag-server<br>1310/tcp  open     husky<br>1311/tcp  open     rxmon<br>1322/tcp  open     novation<br>1328/tcp  open     ewall<br>1334/tcp  open     writesrv<br>1352/tcp  open     lotusnotes<br>1417/tcp  open     timbuktu-srv1<br>1433/tcp  open     ms-sql-s<br>1434/tcp  open     ms-sql-m<br>1443/tcp  open     ies-lm<br>1455/tcp  open     esl-lm<br>1461/tcp  open     ibm_wrless_lan<br>1494/tcp  open     citrix-ica<br>1500/tcp  open     vlsi-lm<br>1501/tcp  open     sas-3<br>1503/tcp  open     imtc-mcs<br>1521/tcp  open     oracle<br>1524/tcp  open     ingreslock<br>1533/tcp  open     virtual-places<br>1556/tcp  open     veritas_pbx<br>1580/tcp  open     tn-tl-r1<br>1583/tcp  open     simbaexpress<br>1594/tcp  open     sixtrak<br>1600/tcp  open     issd<br>1641/tcp  open     invision<br>1658/tcp  open     sixnetudr<br>1666/tcp  open     netview-aix-6<br>1687/tcp  open     nsjtp-ctrl<br>1688/tcp  open     nsjtp-data<br>1700/tcp  open     mps-raft<br>1717/tcp  open     fj-hdnet<br>1718/tcp  open     h323gatedisc<br>1719/tcp  open     h323gatestat<br>1720/tcp  filtered h323q931<br>1721/tcp  open     caicci<br>1723/tcp  open     pptp<br>1755/tcp  open     wms<br>1761/tcp  open     landesk-rc<br>1782/tcp  open     hp-hcip<br>1783/tcp  open     unknown<br>1801/tcp  open     msmq<br>1805/tcp  open     enl-name<br>1812/tcp  open     radius<br>1839/tcp  open     netopia-vo1<br>1840/tcp  open     netopia-vo2<br>1862/tcp  open     mysql-cm-agent<br>1863/tcp  open     msnp<br>1864/tcp  open     paradym-31<br>1875/tcp  open     westell-stats<br>1900/tcp  open     upnp<br>1914/tcp  open     elm-momentum<br>1935/tcp  open     rtmp<br>1947/tcp  open     sentinelsrm<br>1971/tcp  open     netop-school<br>1972/tcp  open     intersys-cache<br>1974/tcp  open     drp<br>1984/tcp  open     bigbrother<br>1998/tcp  open     x25-svc-port<br>1999/tcp  open     tcp-id-port<br>2000/tcp  open     cisco-sccp<br>2001/tcp  open     dc<br>2002/tcp  open     globe<br>2003/tcp  open     finger<br>2004/tcp  open     mailbox<br>2005/tcp  open     deslogin<br>2006/tcp  open     invokator<br>2007/tcp  open     dectalk<br>2008/tcp  open     conf<br>2009/tcp  open     news<br>2010/tcp  open     search<br>2013/tcp  open     raid-am<br>2020/tcp  open     xinupageserver<br>2021/tcp  open     servexec<br>2022/tcp  open     down<br>2030/tcp  open     device2<br>2033/tcp  open     glogger<br>2034/tcp  open     scoremgr<br>2035/tcp  open     imsldoc<br>2038/tcp  open     objectmanager<br>2040/tcp  open     lam<br>2041/tcp  open     interbase<br>2042/tcp  open     isis<br>2043/tcp  open     isis-bcast<br>2045/tcp  open     cdfunc<br>2046/tcp  open     sdfunc<br>2047/tcp  open     dls<br>2048/tcp  open     dls-monitor<br>2049/tcp  open     nfs<br>2065/tcp  open     dlsrpn<br>2068/tcp  open     avocentkvm<br>2099/tcp  open     h2250-annex-g<br>2100/tcp  open     amiganetfs<br>2103/tcp  open     zephyr-clt<br>2105/tcp  open     eklogin<br>2106/tcp  open     ekshell<br>2107/tcp  open     msmq-mgmt<br>2111/tcp  open     kx<br>2119/tcp  open     gsigatekeeper<br>2121/tcp  open     ccproxy-ftp<br>2126/tcp  open     pktcable-cops<br>2135/tcp  open     gris<br>2144/tcp  open     lv-ffx<br>2160/tcp  open     apc-2160<br>2161/tcp  open     apc-agent<br>2170/tcp  open     eyetv<br>2179/tcp  open     vmrdp<br>2190/tcp  open     tivoconnect<br>2191/tcp  open     tvbus<br>2196/tcp  open     unknown<br>2200/tcp  open     ici<br>2222/tcp  open     EtherNetIP-1<br>2251/tcp  open     dif-port<br>2260/tcp  open     apc-2260<br>2288/tcp  open     netml<br>2301/tcp  open     compaqdiag<br>2323/tcp  open     3d-nfsd<br>2366/tcp  open     qip-login<br>2381/tcp  open     compaq-https<br>2382/tcp  open     ms-olap3<br>2383/tcp  open     ms-olap4<br>2393/tcp  open     ms-olap1<br>2394/tcp  open     ms-olap2<br>2399/tcp  open     fmpro-fdal<br>2401/tcp  open     cvspserver<br>2492/tcp  open     groove<br>2500/tcp  open     rtsserv<br>2522/tcp  open     windb<br>2525/tcp  open     ms-v-worlds<br>2557/tcp  open     nicetec-mgmt<br>2601/tcp  open     zebra<br>2602/tcp  open     ripd<br>2604/tcp  open     ospfd<br>2605/tcp  open     bgpd<br>2607/tcp  open     connection<br>2608/tcp  open     wag-service<br>2638/tcp  open     sybase<br>2701/tcp  open     sms-rcinfo<br>2702/tcp  open     sms-xfer<br>2710/tcp  open     sso-service<br>2717/tcp  open     pn-requester<br>2718/tcp  open     pn-requester2<br>2725/tcp  open     msolap-ptp2<br>2800/tcp  open     acc-raid<br>2809/tcp  open     corbaloc<br>2811/tcp  open     gsiftp<br>2869/tcp  open     icslap<br>2875/tcp  open     dxmessagebase2<br>2909/tcp  open     funk-dialout<br>2910/tcp  open     tdaccess<br>2920/tcp  open     roboeda<br>2967/tcp  open     symantec-av<br>2968/tcp  open     enpp<br>2998/tcp  open     iss-realsec<br>3000/tcp  open     ppp<br>3001/tcp  open     nessus<br>3003/tcp  open     cgms<br>3005/tcp  open     deslogin<br>3006/tcp  open     deslogind<br>3007/tcp  open     lotusmtap<br>3011/tcp  open     trusted-web<br>3013/tcp  open     gilatskysurfer<br>3017/tcp  open     event_listener<br>3030/tcp  open     arepa-cas<br>3031/tcp  open     eppc<br>3052/tcp  open     powerchute<br>3071/tcp  open     csd-mgmt-port<br>3077/tcp  open     orbix-loc-ssl<br>3128/tcp  open     squid-http<br>3168/tcp  open     poweronnud<br>3211/tcp  open     avsecuremgmt<br>3221/tcp  open     xnm-clear-text<br>3260/tcp  open     iscsi<br>3261/tcp  open     winshadow<br>3268/tcp  open     globalcatLDAP<br>3269/tcp  open     globalcatLDAPssl<br>3283/tcp  open     netassistant<br>3300/tcp  open     ceph<br>3301/tcp  open     unknown<br>3306/tcp  open     mysql<br>3322/tcp  open     active-net<br>3323/tcp  open     active-net<br>3324/tcp  open     active-net<br>3325/tcp  open     active-net<br>3333/tcp  open     dec-notes<br>3351/tcp  open     btrieve<br>3367/tcp  open     satvid-datalnk<br>3369/tcp  open     satvid-datalnk<br>3370/tcp  open     satvid-datalnk<br>3371/tcp  open     satvid-datalnk<br>3372/tcp  open     msdtc<br>3389/tcp  open     ms-wbt-server<br>3390/tcp  open     dsc<br>3404/tcp  open     unknown<br>3476/tcp  open     nppmp<br>3493/tcp  open     nut<br>3517/tcp  open     802-11-iapp<br>3527/tcp  open     beserver-msg-q<br>3546/tcp  open     unknown<br>3551/tcp  open     apcupsd<br>3580/tcp  open     nati-svrloc<br>3659/tcp  open     apple-sasl<br>3689/tcp  open     rendezvous<br>3690/tcp  open     svn<br>3703/tcp  open     adobeserver-3<br>3737/tcp  open     xpanel<br>3766/tcp  open     sitewatch-s<br>3784/tcp  open     bfd-control<br>3800/tcp  open     pwgpsi<br>3801/tcp  open     ibm-mgr<br>3809/tcp  open     apocd<br>3814/tcp  open     neto-dcs<br>3826/tcp  open     wormux<br>3827/tcp  open     netmpi<br>3828/tcp  open     neteh<br>3851/tcp  open     spectraport<br>3869/tcp  open     ovsam-mgmt<br>3871/tcp  open     avocent-adsap<br>3878/tcp  open     fotogcad<br>3880/tcp  open     igrs<br>3889/tcp  open     dandv-tester<br>3905/tcp  open     mupdate<br>3914/tcp  open     listcrt-port-2<br>3918/tcp  open     pktcablemmcops<br>3920/tcp  open     exasoftport1<br>3945/tcp  open     emcads<br>3971/tcp  open     lanrevserver<br>3986/tcp  open     mapper-ws_ethd<br>3995/tcp  open     iss-mgmt-ssl<br>3998/tcp  open     dnx<br>4000/tcp  open     remoteanything<br>4001/tcp  open     newoak<br>4002/tcp  open     mlchat-proxy<br>4003/tcp  open     pxc-splr-ft<br>4004/tcp  open     pxc-roid<br>4005/tcp  open     pxc-pin<br>4006/tcp  open     pxc-spvr<br>4045/tcp  open     lockd<br>4111/tcp  open     xgrid<br>4125/tcp  open     rww<br>4126/tcp  open     ddrepl<br>4129/tcp  open     nuauth<br>4224/tcp  open     xtell<br>4242/tcp  open     vrml-multi-use<br>4279/tcp  open     vrml-multi-use<br>4321/tcp  open     rwhois<br>4343/tcp  open     unicall<br>4443/tcp  open     pharos<br>4444/tcp  filtered krb524<br>4445/tcp  open     upnotifyp<br>4446/tcp  open     n1-fwp<br>4449/tcp  open     privatewire<br>4550/tcp  open     gds-adppiw-db<br>4567/tcp  open     tram<br>4662/tcp  open     edonkey<br>4848/tcp  open     appserv-http<br>4899/tcp  open     radmin<br>4900/tcp  open     hfcs<br>4998/tcp  open     maybe-veritas<br>5000/tcp  open     upnp<br>5001/tcp  open     commplex-link<br>5002/tcp  open     rfe<br>5003/tcp  open     filemaker<br>5004/tcp  open     avt-profile-1<br>5009/tcp  open     airport-admin<br>5030/tcp  open     surfpass<br>5033/tcp  open     jtnetd-server<br>5050/tcp  open     mmcc<br>5051/tcp  open     ida-agent<br>5054/tcp  open     rlm-admin<br>5060/tcp  open     sip<br>5061/tcp  open     sip-tls<br>5080/tcp  open     onscreen<br>5087/tcp  open     biotic<br>5100/tcp  open     admd<br>5101/tcp  open     admdog<br>5102/tcp  open     admeng<br>5120/tcp  open     barracuda-bbs<br>5190/tcp  open     aol<br>5200/tcp  open     targus-getdata<br>5214/tcp  open     unknown<br>5221/tcp  open     3exmp<br>5222/tcp  open     xmpp-client<br>5225/tcp  open     hp-server<br>5226/tcp  open     hp-status<br>5269/tcp  open     xmpp-server<br>5280/tcp  open     xmpp-bosh<br>5298/tcp  open     presence<br>5357/tcp  open     wsdapi<br>5405/tcp  open     pcduo<br>5414/tcp  open     statusd<br>5431/tcp  open     park-agent<br>5432/tcp  open     postgresql<br>5440/tcp  open     unknown<br>5500/tcp  open     hotline<br>5510/tcp  open     secureidprop<br>5544/tcp  open     unknown<br>5550/tcp  open     sdadmind<br>5555/tcp  open     freeciv<br>5560/tcp  open     isqlplus<br>5566/tcp  open     westec-connect<br>5631/tcp  open     pcanywheredata<br>5633/tcp  open     beorl<br>5666/tcp  open     nrpe<br>5678/tcp  open     rrac<br>5679/tcp  open     activesync<br>5718/tcp  open     dpm<br>5730/tcp  open     unieng<br>5800/tcp  open     vnc-http<br>5801/tcp  open     vnc-http-1<br>5802/tcp  open     vnc-http-2<br>5810/tcp  open     unknown<br>5811/tcp  open     unknown<br>5815/tcp  open     unknown<br>5822/tcp  open     unknown<br>5825/tcp  open     unknown<br>5850/tcp  open     unknown<br>5859/tcp  open     wherehoo<br>5862/tcp  open     unknown<br>5877/tcp  open     unknown<br>5900/tcp  open     vnc<br>5901/tcp  open     vnc-1<br>5902/tcp  open     vnc-2<br>5903/tcp  open     vnc-3<br>5904/tcp  open     unknown<br>5906/tcp  open     unknown<br>5907/tcp  open     unknown<br>5910/tcp  open     cm<br>5911/tcp  open     cpdlc<br>5915/tcp  open     unknown<br>5922/tcp  open     unknown<br>5925/tcp  open     unknown<br>5950/tcp  open     unknown<br>5952/tcp  open     unknown<br>5959/tcp  open     unknown<br>5960/tcp  open     unknown<br>5961/tcp  open     unknown<br>5962/tcp  open     unknown<br>5963/tcp  open     indy<br>5987/tcp  open     wbem-rmi<br>5988/tcp  open     wbem-http<br>5989/tcp  open     wbem-https<br>5998/tcp  open     ncd-diag<br>5999/tcp  open     ncd-conf<br>6000/tcp  open     X11<br>6001/tcp  open     X11:1<br>6002/tcp  open     X11:2<br>6003/tcp  open     X11:3<br>6004/tcp  open     X11:4<br>6005/tcp  open     X11:5<br>6006/tcp  open     X11:6<br>6007/tcp  open     X11:7<br>6009/tcp  open     X11:9<br>6025/tcp  open     x11<br>6059/tcp  open     X11:59<br>6100/tcp  open     synchronet-db<br>6101/tcp  open     backupexec<br>6106/tcp  open     isdninfo<br>6112/tcp  open     dtspc<br>6123/tcp  open     backup-express<br>6129/tcp  open     unknown<br>6156/tcp  open     unknown<br>6346/tcp  open     gnutella<br>6389/tcp  open     clariion-evr01<br>6502/tcp  open     netop-rc<br>6510/tcp  open     mcer-port<br>6543/tcp  open     mythtv<br>6547/tcp  open     powerchuteplus<br>6565/tcp  open     unknown<br>6566/tcp  open     sane-port<br>6567/tcp  open     esp<br>6580/tcp  open     parsec-master<br>6646/tcp  open     unknown<br>6666/tcp  open     irc<br>6667/tcp  open     irc<br>6668/tcp  open     irc<br>6669/tcp  open     irc<br>6689/tcp  open     tsa<br>6692/tcp  open     unknown<br>6699/tcp  open     napster<br>6779/tcp  open     unknown<br>6788/tcp  open     smc-http<br>6789/tcp  open     ibm-db2-admin<br>6792/tcp  open     unknown<br>6839/tcp  open     unknown<br>6881/tcp  open     bittorrent-tracker<br>6901/tcp  open     jetstream<br>6969/tcp  open     acmsoda<br>7000/tcp  open     afs3-fileserver<br>7001/tcp  open     afs3-callback<br>7002/tcp  open     afs3-prserver<br>7004/tcp  open     afs3-kaserver<br>7007/tcp  open     afs3-bos<br>7019/tcp  open     doceri-ctl<br>7025/tcp  open     vmsvc-2<br>7070/tcp  open     realserver<br>7100/tcp  open     font-service<br>7103/tcp  open     unknown<br>7106/tcp  open     unknown<br>7200/tcp  open     fodms<br>7201/tcp  open     dlip<br>7402/tcp  open     rtps-dd-mt<br>7435/tcp  open     unknown<br>7443/tcp  open     oracleas-https<br>7496/tcp  open     unknown<br>7512/tcp  open     unknown<br>7625/tcp  open     unknown<br>7627/tcp  open     soap-http<br>7676/tcp  open     imqbrokerd<br>7741/tcp  open     scriptview<br>7777/tcp  open     cbt<br>7778/tcp  open     interwise<br>7800/tcp  open     asr<br>7911/tcp  open     unknown<br>7920/tcp  open     unknown<br>7921/tcp  open     unknown<br>7937/tcp  open     nsrexecd<br>7938/tcp  open     lgtomapper<br>7999/tcp  open     irdmi2<br>8000/tcp  open     http-alt<br>8001/tcp  open     vcom-tunnel<br>8002/tcp  open     teradataordbms<br>8007/tcp  open     ajp12<br>8008/tcp  open     http<br>8009/tcp  open     ajp13<br>8010/tcp  open     xmpp<br>8011/tcp  open     unknown<br>8021/tcp  open     ftp-proxy<br>8022/tcp  open     oa-system<br>8031/tcp  open     unknown<br>8042/tcp  open     fs-agent<br>8045/tcp  open     unknown<br>8080/tcp  open     http-proxy<br>8081/tcp  open     blackice-icecap<br>8082/tcp  open     blackice-alerts<br>8083/tcp  open     us-srv<br>8084/tcp  open     websnp<br>8085/tcp  open     unknown<br>8086/tcp  open     d-s-n<br>8087/tcp  open     simplifymedia<br>8088/tcp  open     radan-http<br>8089/tcp  open     unknown<br>8090/tcp  open     opsmessaging<br>8093/tcp  open     unknown<br>8099/tcp  open     unknown<br>8100/tcp  open     xprint-server<br>8180/tcp  open     unknown<br>8181/tcp  open     intermapper<br>8192/tcp  open     sophos<br>8193/tcp  open     sophos<br>8194/tcp  open     sophos<br>8200/tcp  open     trivnet1<br>8222/tcp  open     unknown<br>8254/tcp  open     unknown<br>8290/tcp  open     unknown<br>8291/tcp  open     unknown<br>8292/tcp  open     blp3<br>8300/tcp  open     tmi<br>8333/tcp  open     bitcoin<br>8383/tcp  open     m2mservices<br>8400/tcp  open     cvd<br>8402/tcp  open     abarsd<br>8443/tcp  open     https-alt<br>8500/tcp  open     fmtp<br>8600/tcp  open     asterix<br>8649/tcp  open     unknown<br>8651/tcp  open     unknown<br>8652/tcp  open     unknown<br>8654/tcp  open     unknown<br>8701/tcp  open     unknown<br>8800/tcp  open     sunwebadmin<br>8873/tcp  open     dxspider<br>8888/tcp  open     sun-answerbook<br>8899/tcp  open     ospf-lite<br>8994/tcp  open     unknown<br>9000/tcp  open     cslistener<br>9001/tcp  open     tor-orport<br>9002/tcp  open     dynamid<br>9003/tcp  open     unknown<br>9009/tcp  open     pichat<br>9010/tcp  open     sdr<br>9011/tcp  open     d-star<br>9040/tcp  open     tor-trans<br>9050/tcp  open     tor-socks<br>9071/tcp  open     unknown<br>9080/tcp  open     glrpc<br>9081/tcp  open     cisco-aqos<br>9090/tcp  open     zeus-admin<br>9091/tcp  open     xmltec-xmlmail<br>9099/tcp  open     unknown<br>9100/tcp  open     jetdirect<br>9101/tcp  open     jetdirect<br>9102/tcp  open     jetdirect<br>9103/tcp  open     jetdirect<br>9110/tcp  open     unknown<br>9111/tcp  open     DragonIDSConsole<br>9200/tcp  open     wap-wsp<br>9207/tcp  open     wap-vcal-s<br>9220/tcp  open     unknown<br>9290/tcp  open     unknown<br>9415/tcp  open     unknown<br>9418/tcp  open     git<br>9485/tcp  open     unknown<br>9500/tcp  open     ismserver<br>9502/tcp  open     unknown<br>9503/tcp  open     unknown<br>9535/tcp  open     man<br>9575/tcp  open     unknown<br>9593/tcp  open     cba8<br>9594/tcp  open     msgsys<br>9595/tcp  open     pds<br>9618/tcp  open     condor<br>9666/tcp  open     zoomcp<br>9876/tcp  open     sd<br>9877/tcp  open     x510<br>9878/tcp  open     kca-service<br>9898/tcp  open     monkeycom<br>9900/tcp  open     iua<br>9917/tcp  open     unknown<br>9929/tcp  open     nping-echo<br>9943/tcp  open     unknown<br>9944/tcp  open     unknown<br>9968/tcp  open     unknown<br>9998/tcp  open     distinct32<br>9999/tcp  open     abyss<br>10000/tcp open     snet-sensor-mgmt<br>10001/tcp open     scp-config<br>10002/tcp open     documentum<br>10003/tcp open     documentum_s<br>10004/tcp open     emcrmirccd<br>10009/tcp open     swdtp-sv<br>10010/tcp open     rxapi<br>10012/tcp open     unknown<br>10024/tcp open     unknown<br>10025/tcp open     unknown<br>10082/tcp open     amandaidx<br>10180/tcp open     unknown<br>10215/tcp open     unknown<br>10243/tcp open     unknown<br>10566/tcp open     unknown<br>10616/tcp open     unknown<br>10617/tcp open     unknown<br>10621/tcp open     unknown<br>10626/tcp open     unknown<br>10628/tcp open     unknown<br>10629/tcp open     unknown<br>10778/tcp open     unknown<br>11110/tcp open     sgi-soap<br>11111/tcp open     vce<br>11967/tcp open     sysinfo-sp<br>12000/tcp open     cce4x<br>12174/tcp open     unknown<br>12265/tcp open     unknown<br>12345/tcp open     netbus<br>13456/tcp open     unknown<br>13722/tcp open     netbackup<br>13782/tcp open     netbackup<br>13783/tcp open     netbackup<br>14000/tcp open     scotty-ft<br>14238/tcp open     unknown<br>14441/tcp open     unknown<br>14442/tcp open     unknown<br>15000/tcp open     hydap<br>15002/tcp open     onep-tls<br>15003/tcp open     unknown<br>15004/tcp open     unknown<br>15660/tcp open     bex-xr<br>15742/tcp open     unknown<br>16000/tcp open     fmsas<br>16001/tcp open     fmsascon<br>16012/tcp open     unknown<br>16016/tcp open     unknown<br>16018/tcp open     unknown<br>16080/tcp open     osxwebadmin<br>16113/tcp open     unknown<br>16992/tcp open     amt-soap-http<br>16993/tcp open     amt-soap-https<br>17877/tcp open     unknown<br>17988/tcp open     unknown<br>18040/tcp open     unknown<br>18101/tcp open     unknown<br>18988/tcp open     unknown<br>19101/tcp open     unknown<br>19283/tcp open     keysrvr<br>19315/tcp open     keyshadow<br>19350/tcp open     unknown<br>19780/tcp open     unknown<br>19801/tcp open     unknown<br>19842/tcp open     unknown<br>20000/tcp open     dnp<br>20005/tcp open     btx<br>20031/tcp open     unknown<br>20221/tcp open     unknown<br>20222/tcp open     ipulse-ics<br>20828/tcp open     unknown<br>21571/tcp open     unknown<br>22939/tcp open     unknown<br>23502/tcp open     unknown<br>24444/tcp open     unknown<br>24800/tcp open     unknown<br>25734/tcp open     unknown<br>25735/tcp open     unknown<br>26214/tcp open     unknown<br>27000/tcp open     flexlm0<br>27352/tcp open     unknown<br>27353/tcp open     unknown<br>27355/tcp open     unknown<br>27356/tcp open     unknown<br>27715/tcp open     unknown<br>28201/tcp open     unknown<br>30000/tcp open     ndmps<br>30718/tcp open     unknown<br>30951/tcp open     unknown<br>31038/tcp open     unknown<br>31337/tcp open     Elite<br>32768/tcp open     filenet-tms<br>32769/tcp open     filenet-rpc<br>32770/tcp open     sometimes-rpc3<br>32771/tcp open     sometimes-rpc5<br>32772/tcp open     sometimes-rpc7<br>32773/tcp open     sometimes-rpc9<br>32774/tcp open     sometimes-rpc11<br>32775/tcp open     sometimes-rpc13<br>32776/tcp open     sometimes-rpc15<br>32777/tcp open     sometimes-rpc17<br>32778/tcp open     sometimes-rpc19<br>32779/tcp open     sometimes-rpc21<br>32780/tcp open     sometimes-rpc23<br>32781/tcp open     unknown<br>32782/tcp open     unknown<br>32783/tcp open     unknown<br>32784/tcp open     unknown<br>32785/tcp open     unknown<br>33354/tcp open     unknown<br>33899/tcp open     unknown<br>34571/tcp open     unknown<br>34572/tcp open     unknown<br>34573/tcp open     unknown<br>35500/tcp open     unknown<br>38292/tcp open     landesk-cba<br>40193/tcp open     unknown<br>40911/tcp open     unknown<br>41511/tcp open     unknown<br>42510/tcp open     caerpc<br>44176/tcp open     unknown<br>44442/tcp open     coldfusion-auth<br>44443/tcp open     coldfusion-auth<br>44501/tcp open     unknown<br>45100/tcp open     unknown<br>48080/tcp open     unknown<br>49152/tcp open     unknown<br>49153/tcp open     unknown<br>49154/tcp open     unknown<br>49155/tcp open     unknown<br>49156/tcp open     unknown<br>49157/tcp open     unknown<br>49158/tcp open     unknown<br>49159/tcp open     unknown<br>49160/tcp open     unknown<br>49161/tcp open     unknown<br>49163/tcp open     unknown<br>49165/tcp open     unknown<br>49167/tcp open     unknown<br>49175/tcp open     unknown<br>49176/tcp open     unknown<br>49400/tcp open     compaqdiag<br>49999/tcp open     unknown<br>50000/tcp open     ibm-db2<br>50001/tcp open     unknown<br>50002/tcp open     iiimsf<br>50003/tcp open     unknown<br>50006/tcp open     unknown<br>50300/tcp open     unknown<br>50389/tcp open     unknown<br>50500/tcp open     unknown<br>50636/tcp open     unknown<br>50800/tcp open     unknown<br>51103/tcp open     unknown<br>51493/tcp open     unknown<br>52673/tcp open     unknown<br>52822/tcp open     unknown<br>52848/tcp open     unknown<br>52869/tcp open     unknown<br>54045/tcp open     unknown<br>54328/tcp open     unknown<br>55055/tcp open     unknown<br>55056/tcp open     unknown<br>55555/tcp open     unknown<br>55600/tcp open     unknown<br>56737/tcp open     unknown<br>56738/tcp open     unknown<br>57294/tcp open     unknown<br>57797/tcp open     unknown<br>58080/tcp open     unknown<br>60020/tcp open     unknown<br>60443/tcp open     unknown<br>61532/tcp open     unknown<br>61900/tcp open     unknown<br>62078/tcp open     iphone-sync<br>63331/tcp open     unknown<br>64623/tcp open     unknown<br>64680/tcp open     unknown<br>65000/tcp open     unknown<br>65129/tcp open     unknown<br>65389/tcp open     unknown</p>
+<p>Nmap done: 1 IP address (1 host up) scanned in 18.70 seconds</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/nmap/" rel="tag"># nmap</a>
+              <a href="/tags/%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F/" rel="tag"># 端口扫描</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/26/ssh%E7%AB%AF%E5%8F%A3%E5%BC%80%E6%94%BE-%E5%8D%B4%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5/" rel="prev" title="ssh端口开放,却无法连接">
+                  <i class="fa fa-chevron-left"></i> ssh端口开放,却无法连接
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/11/26/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E6%8F%90%E7%A4%BA-project-config-json-%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E9%94%99%E8%AF%AF-project-config-json-pluginRoot-%E4%B8%8D%E8%83%BD%E4%B8%BA%E7%A9%BA/" rel="next" title="微信开发者工具提示 - [ project.config.json 文件内容错误] project.config.json: [pluginRoot] 不能为空">
+                  微信开发者工具提示 - [ project.config.json 文件内容错误] project.config.json: [pluginRoot] 不能为空 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">foyou</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
