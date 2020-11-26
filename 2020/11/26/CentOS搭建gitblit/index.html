@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lemisky.github.io","root":"/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="CentOS搭建gitblitgitblit项目地址 gitblit博客地址 下载下载地址  下载 gitblit-1.9.1.tar.gz (当前最新版本) 传送至CentOS系统中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS搭建gitblit">
+<meta property="og:url" content="https://lemisky.github.io/2020/11/26/CentOS%E6%90%AD%E5%BB%BAgitblit/index.html">
+<meta property="og:site_name" content="22:22">
+<meta property="og:description" content="CentOS搭建gitblitgitblit项目地址 gitblit博客地址 下载下载地址  下载 gitblit-1.9.1.tar.gz (当前最新版本) 传送至CentOS系统中">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-26T10:20:26.000Z">
+<meta property="article:modified_time" content="2020-11-26T10:25:41.710Z">
+<meta property="article:author" content="foyou">
+<meta property="article:tag" content="gitblit">
+<meta property="article:tag" content="commons daemon">
+<meta property="article:tag" content="repo">
+<meta property="article:tag" content="fengqin">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lemisky.github.io/2020/11/26/CentOS%E6%90%AD%E5%BB%BAgitblit/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CentOS搭建gitblit | 22:22</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">22:22</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blogs of Xiaomi Wang</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CentOS%E6%90%AD%E5%BB%BAgitblit"><span class="nav-number">1.</span> <span class="nav-text">CentOS搭建gitblit</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">解压</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gzip"><span class="nav-number">1.3.</span> <span class="nav-text">gzip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tar"><span class="nav-number">1.4.</span> <span class="nav-text">tar</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-gzip-gunzip"><span class="nav-number">1.4.1.</span> <span class="nav-text">关于 gzip &#x2F; gunzip</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.5.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.6.</span> <span class="nav-text">运行服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E4%BE%9D%E8%B5%96"><span class="nav-number">2.</span> <span class="nav-text">关于依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Eyum%E6%BA%90"><span class="nav-number">3.</span> <span class="nav-text">关于yum源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">关于一些问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%A5%E9%94%99-opt-gitblit-java-proxy-config-sh-%E6%B2%A1%E6%9C%89%E9%82%A3%E4%B8%AA%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95"><span class="nav-number">4.1.</span> <span class="nav-text">报错 - &#x2F;opt&#x2F;gitblit&#x2F;java-proxy-config.sh: 没有那个文件或目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%90%AF%E5%8A%A8"><span class="nav-number">4.2.</span> <span class="nav-text">服务的启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF"><span class="nav-number">4.3.</span> <span class="nav-text">设置开机自启</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">foyou</p>
+  <div class="site-description" itemprop="description">分享每一个问题</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/11/26/CentOS%E6%90%AD%E5%BB%BAgitblit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CentOS搭建gitblit
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-11-26 18:20:26 / 修改时间：18:25:41" itemprop="dateCreated datePublished" datetime="2020-11-26T18:20:26+08:00">2020-11-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="CentOS搭建gitblit"><a href="#CentOS搭建gitblit" class="headerlink" title="CentOS搭建gitblit"></a>CentOS搭建gitblit</h1><p><a target="_blank" rel="noopener" href="https://github.com/gitblit/gitblit">gitblit项目地址</a></p>
+<p><a target="_blank" rel="noopener" href="http://gitblit.github.io/gitblit/">gitblit博客地址</a></p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/gitblit/gitblit/releases">下载地址</a></p>
+<ol>
+<li>下载 <a target="_blank" rel="noopener" href="https://github.com/gitblit/gitblit/releases/download/v1.9.1/gitblit-1.9.1.tar.gz">gitblit-1.9.1.tar.gz</a> (当前最新版本)</li>
+<li>传送至CentOS系统中</li>
+</ol>
+<a id="more"></a>
+
+<h2 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/capecape/article/details/78548723">解压命令参考</a></p>
+<blockquote>
+<h2 id="gzip"><a href="#gzip" class="headerlink" title="gzip"></a>gzip</h2><ul>
+<li>压缩后的格式为：*.gz</li>
+<li>这种压缩方式不能保存原文件；且不能压缩目录</li>
+<li>命令举例：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#压缩</span><br><span class="line">[root@localhost tmp]# gzip buodo</span><br><span class="line">[root@localhost tmp]# ls</span><br><span class="line">buodo.gz</span><br><span class="line">#解压</span><br><span class="line">[root@localhost tmp]# gunzip buodo.gz </span><br><span class="line">[root@localhost tmp]# ls</span><br><span class="line">buodo12345678</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><ul>
+<li>命令选项：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-z(gzip)      用gzip来压缩&#x2F;解压缩文件</span><br><span class="line">-j(bzip2)     用bzip2来压缩&#x2F;解压缩文件</span><br><span class="line">-v(verbose)   详细报告tar处理的文件信息</span><br><span class="line">-c(create)    创建新的档案文件</span><br><span class="line">-x(extract)   解压缩文件或目录</span><br><span class="line">-f(file)      使用档案文件或设备，这个选项通常是必选的。123456</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>命令举例：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#压缩</span><br><span class="line">[root@localhost tmp]# tar -zvcf buodo.tar.gz buodo</span><br><span class="line">[root@localhost tmp]# tar -jvcf buodo.tar.bz2 buodo </span><br><span class="line"></span><br><span class="line">#解压</span><br><span class="line">[root@localhost tmp]# tar -zvxf buodo.tar.gz </span><br><span class="line">[root@localhost tmp]# tar -jvxf buodo.tar.bz21234567</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>在这里, 文件名为 <strong>gitblit-1.9.1.tar.gz</strong></p>
+<p>解压参数为:</p>
+<ol>
+<li>解压 -&gt; x</li>
+<li>gz -&gt; z</li>
+<li>详细输出 -&gt; v, <strong>此选项可有可无</strong></li>
+<li>指定 gitblit-1.9.1.tar.gz 文件 -&gt; f</li>
+</ol>
+<p>解压命令为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf gitblit-1.9.1.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者手动分两次解压</span></span><br><span class="line">gunzip gitblit-1.9.1.tar.gz	<span class="comment">#会删除gitblit-1.9.1.tar.gz, 并生成gitblit-1.9.1.tar</span></span><br><span class="line">tar -xvf gitblit-1.9.1.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="关于-gzip-gunzip"><a href="#关于-gzip-gunzip" class="headerlink" title="关于 gzip / gunzip"></a>关于 gzip / gunzip</h3><p>从下面信息可知, gzip比gunzip大, 再观察两者的帮助信息, 完全一样.</p>
+<p>结论: <strong>gzip</strong> 包含 <strong>gunzip</strong>, <strong>gunzip</strong> 相当于 <strong>gzip -d</strong> (即gunzip只有解压缩没有压缩功能)</p>
+<blockquote>
+<p>[root@localhost gitblit]# ls -l /usr/bin/gunzip<br>-rwxr-xr-x. 1 root root <strong>2253</strong> 4月  11 2018 /usr/bin/gunzip<br>[root@localhost gitblit]# ls -l /usr/bin/gzip<br>-rwxr-xr-x. 1 root root <strong>100800</strong> 4月  11 2018 /usr/bin/gzip</p>
+</blockquote>
+<p>gzip/gunzip帮助信息, 通过对比, 一模一样</p>
+<blockquote>
+<p>Usage: gzip [OPTION]… [FILE]…<br>Compress or uncompress FILEs (by default, compress FILES in-place).</p>
+<p>Mandatory arguments to long options are mandatory for short options too.</p>
+<p>-c, –stdout      write on standard output, keep original files unchanged<br>-d, –decompress  decompress<br>-f, –force       force overwrite of output file and compress links<br>-h, –help        give this help<br>-l, –list        list compressed file contents<br>-L, –license     display software license<br>-n, –no-name     do not save or restore the original name and time stamp<br>-N, –name        save or restore the original name and time stamp<br>-q, –quiet       suppress all warnings<br>-r, –recursive   operate recursively on directories<br>-S, –suffix=SUF  use suffix SUF on compressed files<br>-t, –test        test compressed file integrity<br>-v, –verbose     verbose mode<br>-V, –version     display version number<br>-1, –fast        compress faster<br>-9, –best        compress better<br> –rsyncable   Make rsync-friendly archive</p>
+<p>With no FILE, or when FILE is -, read standard input.</p>
+<p>Report bugs to <a href="mailto:&#98;&#117;&#103;&#x2d;&#103;&#x7a;&#x69;&#112;&#x40;&#103;&#110;&#x75;&#46;&#111;&#114;&#x67;">&#98;&#117;&#103;&#x2d;&#103;&#x7a;&#x69;&#112;&#x40;&#103;&#110;&#x75;&#46;&#111;&#114;&#x67;</a>.</p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>进入文件夹, 查看文件</p>
+<blockquote>
+<p>[root@localhost ~]# cd gitblit-1.9.1<br>[root@localhost gitblit-1.9.1]# ll<br>总用量 3712<br>-rwxr-xr-x. 1 root root     984 4月   5 2020 add-indexed-branch.sh<br>-rwxr-xr-x. 1 root root      98 4月   5 2020 authority.sh<br>drwxr-xr-x. 6 root root     153 11月 21 14:35 data<br>drwxr-xr-x. 5 root root    4096 11月 21 14:35 docs<br>drwxr-xr-x. 2 root root    4096 11月 21 14:35 ext<br>-rw-r–r–. 1 root root 3717404 4月   5 2020 gitblit.jar<br>-rwxr-xr-x. 1 root root      85 4月   5 2020 gitblit.sh<br>-rwxr-xr-x. 1 root root      92 4月   5 2020 gitblit-stop.sh<br>-rwxr-xr-x. 1 root root      87 4月   5 2020 install-service-centos.sh<br>-rwxr-xr-x. 1 root root    1312 4月   5 2020 install-service-fedora.sh<br>-rwxr-xr-x. 1 root root      92 4月   5 2020 install-service-ubuntu.sh<br>-rwxr-xr-x. 1 root root     997 4月   5 2020 java-proxy-config.sh<br>-rw-r–r–. 1 root root   11556 4月   5 2020 LICENSE<br>-rwxr-xr-x. 1 root root     601 4月   5 2020 migrate-tickets.sh<br>-rw-r–r–. 1 root root   12237 4月   5 2020 NOTICE<br>-rwxr-xr-x. 1 root root     640 4月   5 2020 reindex-tickets.sh<br>-rwxr-xr-x. 1 root root    1319 4月   5 2020 service-centos.sh<br>-rwxr-xr-x. 1 root root    1543 4月   5 2020 service-ubuntu.sh<br>[root@localhost gitblit-1.9.1]# </p>
+</blockquote>
+<p>查看系统型号</p>
+<blockquote>
+<p>[root@localhost gitblit-1.9.1]# cat /etc/os-release<br>NAME=”CentOS Linux”<br>VERSION=”7 (Core)”<br>ID=”centos”<br>ID_LIKE=”rhel fedora”<br>VERSION_ID=”7”<br>PRETTY_NAME=”CentOS Linux 7 (Core)”<br>ANSI_COLOR=”0;31”<br>CPE_NAME=”cpe:/o:centos:centos:7”<br>HOME_URL=”<a target="_blank" rel="noopener" href="https://www.centos.org/&quot;">https://www.centos.org/&quot;</a><br>BUG_REPORT_URL=”<a target="_blank" rel="noopener" href="https://bugs.centos.org/&quot;">https://bugs.centos.org/&quot;</a></p>
+<p>CENTOS_MANTISBT_PROJECT=”CentOS-7”<br>CENTOS_MANTISBT_PROJECT_VERSION=”7”<br>REDHAT_SUPPORT_PRODUCT=”centos”<br>REDHAT_SUPPORT_PRODUCT_VERSION=”7”</p>
+</blockquote>
+<p>由于 <strong>NAME=”CentOS Linux”</strong>, 则使用以下命令安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./install-service-centos.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行服务"><a href="#运行服务" class="headerlink" title="运行服务"></a>运行服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./service-centos.sh</span><br></pre></td></tr></table></figure>
+
+<h1 id="关于依赖"><a href="#关于依赖" class="headerlink" title="关于依赖"></a>关于依赖</h1><p>gitblit依赖java</p>
+<p>查找可用 <strong>Java/JDK</strong> 包</p>
+<blockquote>
+<p> [root@localhost gitblit-1.9.1]# yum search openjdk<br> 已加载插件：fastestmirror<br> Loading mirror speeds from cached hostfile</p>
+<ul>
+<li><p>base: mirrors.huaweicloud.com</p>
+</li>
+<li><p>epel: hkg.mirror.rackspace.com</p>
+</li>
+<li><p>extras: mirrors.huaweicloud.com</p>
+</li>
+<li><p>updates: mirrors.huaweicloud.com<br>======================================================================= N/S matched: openjdk =======================================================================<br>java-1.6.0-openjdk.x86_64 : OpenJDK Runtime Environment<br>java-1.6.0-openjdk-demo.x86_64 : OpenJDK Demos<br>java-1.6.0-openjdk-devel.x86_64 : OpenJDK Development Environment<br>java-1.6.0-openjdk-javadoc.x86_64 : OpenJDK API Documentation<br>java-1.6.0-openjdk-src.x86_64 : OpenJDK Source Bundle<br>java-1.7.0-openjdk.x86_64 : OpenJDK Runtime Environment<br>java-1.7.0-openjdk-accessibility.x86_64 : OpenJDK accessibility connector<br>java-1.7.0-openjdk-demo.x86_64 : OpenJDK Demos<br>java-1.7.0-openjdk-devel.x86_64 : OpenJDK Development Environment<br>java-1.7.0-openjdk-headless.x86_64 : The OpenJDK runtime environment without audio and video support<br>java-1.7.0-openjdk-javadoc.noarch : OpenJDK API Documentation<br>java-1.7.0-openjdk-src.x86_64 : OpenJDK Source Bundle<br>java-1.8.0-openjdk.i686 : OpenJDK Runtime Environment 8<br>java-1.8.0-openjdk.x86_64 : OpenJDK Runtime Environment 8<br>java-1.8.0-openjdk-accessibility.i686 : OpenJDK accessibility connector<br>java-1.8.0-openjdk-accessibility.x86_64 : OpenJDK accessibility connector<br>java-1.8.0-openjdk-demo.i686 : OpenJDK Demos 8<br>java-1.8.0-openjdk-demo.x86_64 : OpenJDK Demos 8<br>java-1.8.0-openjdk-devel.i686 : OpenJDK Development Environment 8<br>java-1.8.0-openjdk-devel.x86_64 : OpenJDK Development Environment 8<br>java-1.8.0-openjdk-headless.i686 : OpenJDK Headless Runtime Environment 8<br>java-1.8.0-openjdk-headless.x86_64 : OpenJDK Headless Runtime Environment 8<br>java-1.8.0-openjdk-javadoc.noarch : OpenJDK 8 API documentation<br>java-1.8.0-openjdk-javadoc-zip.noarch : OpenJDK 8 API documentation compressed in a single archive<br>java-1.8.0-openjdk-src.i686 : OpenJDK Source Bundle 8<br>java-1.8.0-openjdk-src.x86_64 : OpenJDK Source Bundle 8<br>java-11-openjdk.i686 : OpenJDK Runtime Environment 11<br>java-11-openjdk.x86_64 : OpenJDK Runtime Environment 11<br>java-11-openjdk-demo.i686 : OpenJDK Demos 11<br>java-11-openjdk-demo.x86_64 : OpenJDK Demos 11<br>java-11-openjdk-devel.i686 : OpenJDK Development Environment 11<br>java-11-openjdk-devel.x86_64 : OpenJDK Development Environment 11<br>java-11-openjdk-headless.i686 : OpenJDK Headless Runtime Environment 11<br>java-11-openjdk-headless.x86_64 : OpenJDK Headless Runtime Environment 11<br>java-11-openjdk-javadoc.i686 : OpenJDK 11 API documentation<br>java-11-openjdk-javadoc.x86_64 : OpenJDK 11 API documentation<br>java-11-openjdk-javadoc-zip.i686 : OpenJDK 11 API documentation compressed in a single archive<br>java-11-openjdk-javadoc-zip.x86_64 : OpenJDK 11 API documentation compressed in a single archive<br>java-11-openjdk-jmods.i686 : JMods for OpenJDK 11<br>java-11-openjdk-jmods.x86_64 : JMods for OpenJDK 11<br>java-11-openjdk-src.i686 : OpenJDK Source Bundle 11<br>java-11-openjdk-src.x86_64 : OpenJDK Source Bundle 11<br>java-11-openjdk-static-libs.i686 : OpenJDK libraries for static linking 11<br>java-11-openjdk-static-libs.x86_64 : OpenJDK libraries for static linking 11<br>java-latest-openjdk.x86_64 : OpenJDK Runtime Environment 14<br>java-latest-openjdk-debug.x86_64 : OpenJDK Runtime Environment 14 with full debug on<br>java-latest-openjdk-demo.x86_64 : OpenJDK Demos 14<br>java-latest-openjdk-demo-debug.x86_64 : OpenJDK Demos 14 with full debug on<br>java-latest-openjdk-devel.x86_64 : OpenJDK Development Environment 14<br>java-latest-openjdk-devel-debug.x86_64 : OpenJDK Development Environment 14 with full debug on<br>java-latest-openjdk-headless.x86_64 : OpenJDK Headless Runtime Environment 14<br>java-latest-openjdk-headless-debug.x86_64 : OpenJDK Runtime Environment with full debug on<br>java-latest-openjdk-javadoc.x86_64 : OpenJDK 14 API documentation<br>java-latest-openjdk-javadoc-zip.x86_64 : OpenJDK 14 API documentation compressed in a single archive<br>java-latest-openjdk-jmods.x86_64 : JMods for OpenJDK 14<br>java-latest-openjdk-jmods-debug.x86_64 : JMods for OpenJDK 14 with full debug on<br>java-latest-openjdk-src.x86_64 : OpenJDK Source Bundle 14<br>java-latest-openjdk-src-debug.x86_64 : OpenJDK Source Bundle 14 for packages with debug on<br>icedtea-web.x86_64 : Additional Java components for OpenJDK - Java browser plug-in and Web Start implementation<br>openprops.noarch : An improved java.util.Properties from OpenJDK</p>
+<p>名称和简介匹配 only，使用“search all”试试。</p>
+</li>
+</ul>
+</blockquote>
+<p>选择一个安装</p>
+<blockquote>
+<p>[root@localhost gitblit-1.9.1]# yum install java-latest-openjdk.x86_64</p>
+</blockquote>
+<h1 id="关于yum源"><a href="#关于yum源" class="headerlink" title="关于yum源"></a>关于yum源</h1><p>速度慢可以切换一下</p>
+<p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/centos">CentOS配置参考</a> </p>
+<p>针对CentOS7配置步骤</p>
+<ol>
+<li><p>备份</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载新的 CentOS-Base.repo 到 /etc/yum.repos.d/</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行 <strong>yum makecache</strong> 生成缓存</p>
+</li>
+<li><p>其他</p>
+<ul>
+<li><p>非阿里云ECS用户会出现 Couldn’t resolve host ‘mirrors.cloud.aliyuncs.com’ 信息，不影响使用。用户也可自行修改相关配置: eg:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i -e <span class="string">&#x27;/mirrors.cloud.aliyuncs.com/d&#x27;</span> -e <span class="string">&#x27;/mirrors.aliyuncs.com/d&#x27;</span> /etc/yum.repos.d/CentOS-Base.repo</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>我把其他全部禁用(就是添加后缀 <strong>.backup</strong>), 好快</p>
+</li>
+</ol>
+<h1 id="关于一些问题"><a href="#关于一些问题" class="headerlink" title="关于一些问题"></a>关于一些问题</h1><h2 id="报错-opt-gitblit-java-proxy-config-sh-没有那个文件或目录"><a href="#报错-opt-gitblit-java-proxy-config-sh-没有那个文件或目录" class="headerlink" title="报错 - /opt/gitblit/java-proxy-config.sh: 没有那个文件或目录"></a>报错 - /opt/gitblit/java-proxy-config.sh: 没有那个文件或目录</h2><p>正常情况应该完事了. 但是gitblit提供的服务安装思路与正常的不同.</p>
+<ul>
+<li>运行 <strong>systemctl start gitblit</strong> 启动服务后, 进行访问, 却发现无法访问</li>
+<li>使用 <strong>systemctl status gitblit</strong> 查看服务状态会发现如下错误</li>
+</ul>
+<blockquote>
+<p>./service-centos.sh:行13: /opt/gitblit/java-proxy-config.sh: 没有那个文件或目录<br>Usage: /etc/init.d/gitblit {start|stop|restart|force-reload}</p>
+</blockquote>
+<p>其实这个问题很简单, gitblit官方在脚本中将gitblit的安装路径写死了, 作为默认.</p>
+<blockquote>
+<p>GITBLIT_PATH=/opt/gitblit<br>GITBLIT_BASE_FOLDER=/opt/gitblit/data</p>
+</blockquote>
+<p>解决方法就是将 <strong>gitblit</strong> 放到默认的 <strong>/opt/gitblit</strong> 中, 或者 修改默认路径.</p>
+<p>这一点官方脚本中也有说明</p>
+<blockquote>
+<p><strong>change theses values (default values)</strong><br>GITBLIT_PATH=/opt/gitblit<br>GITBLIT_BASE_FOLDER=/opt/gitblit/data<br>GITBLIT_HTTP_PORT=0<br>GITBLIT_HTTPS_PORT=8443<br>GITBLIT_LOG=/var/log/gitblit.log<br>…</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 停止服务</span><br><span class="line">systemctl stop gitblit</span><br><span class="line"># 修改后重新安装</span><br><span class="line">.&#x2F;install-service-centos.sh </span><br><span class="line"># 重新加载服务, 使修改得以生效</span><br><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+
+<p>再或者修改脚本, <strong>install-service-centos.sh</strong> 示例如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">sed -i <span class="string">&#x27;s@^GITBLIT_PATH=.*$@GITBLIT_PATH=&#x27;</span>`<span class="built_in">pwd</span>`<span class="string">&#x27;@g&#x27;</span> service-centos.sh</span><br><span class="line">sed -i <span class="string">&#x27;s@^GITBLIT_BASE_FOLDER=.*$@GITBLIT_BASE_FOLDER=&#x27;</span>`<span class="built_in">pwd</span>`<span class="string">&#x27;/data@g&#x27;</span> service-centos.sh</span><br><span class="line">sudo cp service-centos.sh /etc/init.d/gitblit</span><br><span class="line">sudo chkconfig --add gitblit</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务的启动"><a href="#服务的启动" class="headerlink" title="服务的启动"></a>服务的启动</h2><p>gitblit目录里有一个 <strong>service-centos.sh</strong> 文件, 这个 <strong>不是启动服务的脚本(命令)</strong>, 正确的姿势因该是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start gitblit</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置开机自启"><a href="#设置开机自启" class="headerlink" title="设置开机自启"></a>设置开机自启</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable gitblit</span><br></pre></td></tr></table></figure>
+
+<p>最后附上 <a target="_blank" rel="noopener" href="http://gitblit.github.io/gitblit/setup_go.html">官方安装教程</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/gitblit/" rel="tag"># gitblit</a>
+              <a href="/tags/commons-daemon/" rel="tag"># commons daemon</a>
+              <a href="/tags/repo/" rel="tag"># repo</a>
+              <a href="/tags/fengqin/" rel="tag"># fengqin</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/25/AMD-Radeon%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5-1603/" rel="prev" title="AMD Radeon安装失败 1603">
+                  <i class="fa fa-chevron-left"></i> AMD Radeon安装失败 1603
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">foyou</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
