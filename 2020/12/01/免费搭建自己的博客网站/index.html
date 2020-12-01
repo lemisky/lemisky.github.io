@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lemisky.github.io","root":"/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="暂且叫做博客吧, 毕竟大家都这么叫~φ(*￣0￣)  新奇的东西还是多呀, 互联网让人眼花缭乱.  记得以前, 我们想要一个自己的网站, 也许就是简单的写写文章文档, 可能要自己搞个服务器, 然后跑系统(自己做, 或现成的, 或简单的h5特效页面), 要不就只有在别人的博客网上注册账号使用. 大型专门的博客网站, 例如: 博客园, CSDN等一些. 这些的优点就是访问无限制, 缺点就是给你什么样的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="免费搭建自己的博客网站">
+<meta property="og:url" content="https://lemisky.github.io/2020/12/01/%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/index.html">
+<meta property="og:site_name" content="22:22">
+<meta property="og:description" content="暂且叫做博客吧, 毕竟大家都这么叫~φ(*￣0￣)  新奇的东西还是多呀, 互联网让人眼花缭乱.  记得以前, 我们想要一个自己的网站, 也许就是简单的写写文章文档, 可能要自己搞个服务器, 然后跑系统(自己做, 或现成的, 或简单的h5特效页面), 要不就只有在别人的博客网上注册账号使用. 大型专门的博客网站, 例如: 博客园, CSDN等一些. 这些的优点就是访问无限制, 缺点就是给你什么样的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lemisky.github.io/images/5882b2b7d0a20cf4f664615276094b36adaf9943">
+<meta property="og:image" content="https://lemisky.github.io/images/image-20201201130249928.png">
+<meta property="og:image" content="https://lemisky.github.io/images/image-20201201130910177.png">
+<meta property="article:published_time" content="2020-12-01T04:18:49.000Z">
+<meta property="article:modified_time" content="2020-12-01T05:25:10.270Z">
+<meta property="article:author" content="foyou">
+<meta property="article:tag" content="fengqin">
+<meta property="article:tag" content="blogs">
+<meta property="article:tag" content="github">
+<meta property="article:tag" content="github pages">
+<meta property="article:tag" content="vercel">
+<meta property="article:tag" content="免费">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="文章">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lemisky.github.io/images/5882b2b7d0a20cf4f664615276094b36adaf9943">
+
+
+<link rel="canonical" href="https://lemisky.github.io/2020/12/01/%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>免费搭建自己的博客网站 | 22:22</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">22:22</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blogs of Xiaomi Wang</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Github-Pages"><span class="nav-number">1.</span> <span class="nav-text">Github Pages</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%A7%91%E6%99%AE"><span class="nav-number">1.1.</span> <span class="nav-text">简单科普</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%88%E7%AE%80%E5%8D%95"><span class="nav-number">1.2.</span> <span class="nav-text">很简单</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vercel"><span class="nav-number">2.</span> <span class="nav-text">Vercel</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%87%A0%E6%AD%A5-%E4%B9%9F%E5%BE%88%E7%AE%80%E5%8D%95"><span class="nav-number">2.1.</span> <span class="nav-text">简单几步, 也很简单</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">foyou</p>
+  <div class="site-description" itemprop="description">分享每一个问题</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/01/%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          免费搭建自己的博客网站
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-01 12:18:49 / 修改时间：13:25:10" itemprop="dateCreated datePublished" datetime="2020-12-01T12:18:49+08:00">2020-12-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>暂且叫做博客吧, 毕竟大家都这么叫~φ(*￣0￣)</p>
+<blockquote>
+<p>新奇的东西还是多呀, 互联网让人眼花缭乱.</p>
+</blockquote>
+<p>记得以前, 我们想要一个自己的网站, 也许就是简单的写写文章文档, 可能要自己搞个服务器, 然后跑系统(自己做, 或现成的, 或简单的h5特效页面), 要不就只有在别人的博客网上注册账号使用. 大型专门的博客网站, 例如: 博客园, CSDN等一些. 这些的优点就是访问无限制, 缺点就是给你什么样的就是什么样, 没得商量, 没法控制. 如果自己搭服务器的话, 首先要钱, 没有一次 <em>xxx</em>, 终生 <em>yyy</em>, 而且访问速度或流量限制, 还得防着服务器攻击, 根本没法用. 各种麻烦各种不靠谱.</p>
+<p>不过怎么说呢, 还是自己知道的少了. 非得流行起来才晓得, 菜(～￣▽￣)～</p>
+<p>因为刚刚查了下, <strong>github pages</strong> 08年就推出了, 那时 win7 都还没出来, 而我接触计算机 还是 <strong>win8</strong> 出来了之后. 那年年底 12-20 , 微软放出 win10 的消息.</p>
+<a id="more"></a>
+
+<h1 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h1><h2 id="简单科普"><a href="#简单科普" class="headerlink" title="简单科普"></a>简单科普</h2><ul>
+<li><p>git</p>
+<p>一个代码版本管理工具, 作者是 Linux之父 - Linus<img src="/images/5882b2b7d0a20cf4f664615276094b36adaf9943" alt="img"></p>
+</li>
+<li><p>github</p>
+<p>基于git的全球最大开源代码托管社区, 目前老爹是 <strong>巨硬</strong> , 哈哈 不懂吧, 其实就是 <strong>微软</strong>, 为啥叫巨硬呢, 因为它牛逼.</p>
+</li>
+<li><p>GitHub pages</p>
+<p>就是github中的一个功能, 能够分配一个二级域名, 然后空间托管. 简单说就是 你只需要提供代码(静态页面吧), 一毛钱不用, 就可以搭建一个自己的博客网站. 可以定制(就是你的代码了), 不要服务器, 也没有访问不稳定什么的问题.</p>
+<p>当然也是有限制, 不过一般来说, 达不到, 等达到了再说吧（￣︶￣）↗　</p>
+</li>
+</ul>
+<h2 id="很简单"><a href="#很简单" class="headerlink" title="很简单"></a>很简单</h2><ol>
+<li><p>你肯定用过 git 吧, 你肯定有 github 账号吧~, 对, 有, 继续看</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/">访问github并登录</a></p>
+<p><img src="/images/image-20201201130249928.png" alt="image-20201201130249928"></p>
+<p>上面这张图主要是获取自己的 github id, 下文统一用我的 <strong>lemisky</strong> 表示, 自己操作全部换成自己的.</p>
+</li>
+<li><p>点击 <strong>New</strong>, 新建一个</p>
+<p><img src="/images/image-20201201130910177.png" alt="image-20201201130910177"></p>
+</li>
+<li><p>后面就是上传网站文件了, 如果你已经有网站了, 那么直接将根目录 推送上去就可以了.</p>
+<p><strong>注意: 这只能搭建静态网站博客, 跑不了动态解析的, 比如 php, java, asp.net, python</strong></p>
+<p><strong>只支持3种<em>代码</em>, 哪三种就不需要说了吧</strong></p>
+<blockquote>
+<p>html, css, js</p>
+</blockquote>
+</li>
+<li><p>之后访问 [你的github id].github.io, 就可以了. eg: <a href="https://lemisky.github.io/">lemisky.github.io</a></p>
+</li>
+<li><p>简单几步, 非常简单. 静态博客的话, 有很多…, 去搜下 <strong>hexo</strong>, 国内用比较多. 也可以参考, <a href="/2020/11/25/%E8%87%AA%E7%94%A8-hexo-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4/">我的小草稿 别人的写的好, 我这个辣鸡</a></p>
+</li>
+</ol>
+<h1 id="Vercel"><a href="#Vercel" class="headerlink" title="Vercel"></a>Vercel</h1><p>这个就更有意思了, ,,</p>
+<p>先说下 <strong>github pages</strong> 的限制吧,</p>
+<ol>
+<li>只有一个, 域名也是 只能自己id</li>
+<li>其他限制应该和 vercel 差不多, 主要是 github 只能搞一个.</li>
+<li>看到这里就知道 vercel 能干嘛了吧? <a target="_blank" rel="noopener" href="https://0822.vercel.app/">可以这里预览一下, 也许还可以访问</a></li>
+</ol>
+<h2 id="简单几步-也很简单"><a href="#简单几步-也很简单" class="headerlink" title="简单几步, 也很简单"></a>简单几步, 也很简单</h2><ol>
+<li>注册个账号呗. <a target="_blank" rel="noopener" href="https://vercel.com/">vercel官网</a>, 直接用 GitHub 就行, 授权</li>
+<li>好像个人可以 50 个吧, 不过总共流量有限制. 域名呢, 别人没用, 你就可以用</li>
+<li>工作原理就是, 绑定github仓库(gitlab也可以), 效果和 GitHub pages 一样</li>
+<li>后面就不写, <a target="_blank" rel="noopener" href="https://vercel.com/docs">官网更详细</a></li>
+<li>总之就是几下就可以了</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/fengqin/" rel="tag"># fengqin</a>
+              <a href="/tags/blogs/" rel="tag"># blogs</a>
+              <a href="/tags/github/" rel="tag"># github</a>
+              <a href="/tags/github-pages/" rel="tag"># github pages</a>
+              <a href="/tags/vercel/" rel="tag"># vercel</a>
+              <a href="/tags/%E5%85%8D%E8%B4%B9/" rel="tag"># 免费</a>
+              <a href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag"># 博客</a>
+              <a href="/tags/%E6%96%87%E7%AB%A0/" rel="tag"># 文章</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/01/aka-ms%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/" rel="prev" title="aka.ms无法访问">
+                  <i class="fa fa-chevron-left"></i> aka.ms无法访问
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">foyou</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
