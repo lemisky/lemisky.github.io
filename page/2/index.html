@@ -162,12 +162,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -199,6 +199,88 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/11/26/ssh%E7%AB%AF%E5%8F%A3%E5%BC%80%E6%94%BE-%E5%8D%B4%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/26/ssh%E7%AB%AF%E5%8F%A3%E5%BC%80%E6%94%BE-%E5%8D%B4%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5/" class="post-title-link" itemprop="url">ssh端口开放,却无法连接</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-11-26 19:51:16 / 修改时间：20:00:58" itemprop="dateCreated datePublished" datetime="2020-11-26T19:51:16+08:00">2020-11-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在使用<strong>nmap</strong>扫描目标主机时:</p>
+<blockquote>
+<p>nmap –osscan-guess <a target="_blank" rel="noopener" href="http://www.minzhuokj.com/">www.minzhuokj.com</a><br>Starting Nmap 7.91 ( <a target="_blank" rel="noopener" href="https://nmap.org/">https://nmap.org</a> ) at 2020-11-26 19:44 ?D1ú±ê×?ê±??<br>Nmap scan report for <a target="_blank" rel="noopener" href="http://www.minzhuokj.com/">www.minzhuokj.com</a> (39.96.251.199)<br>Host is up (0.025s latency).</p>
+<p>PORT      STATE    SERVICE<br>1/tcp     open     tcpmux<br>3/tcp     open     compressnet<br>4/tcp     open     unknown<br>6/tcp     open     unknown<br>7/tcp     open     echo<br>9/tcp     open     discard<br>13/tcp    open     daytime<br>17/tcp    open     qotd<br>19/tcp    open     chargen<br>20/tcp    open     ftp-data<br>21/tcp    open     ftp<br>22/tcp    open     ssh<br>23/tcp    open     telnet<br>24/tcp    open     priv-mail<br>25/tcp    open     smtp<br>26/tcp    open     rsftp</p>
+</blockquote>
+<p>发现 <strong>ssh</strong> 的 <strong>22</strong> 号端口开放, 于是尝试连接:</p>
+<blockquote>
+<p>ssh.exe 39.96.251.199<br>ssh_exchange_identification: read: Connection reset</p>
+</blockquote>
+<p>正常情况应该是提示输入用户名密码.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/26/ssh%E7%AB%AF%E5%8F%A3%E5%BC%80%E6%94%BE-%E5%8D%B4%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
