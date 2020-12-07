@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lemisky.github.io","root":"/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="组装台式机的八大基本部件 CPU, AMD或Intel 散热, 这里指的是CPU散热, 风冷或水冷, 水冷又分为一体式和分体式, 其中分体式比较高端, 贵 主板, 根据CPU挑选主板, 直接到淘宝搜就可以了 显卡, 玩游戏或者视频处理需要 电源, 根据上面这些东西挑选电源 内存, 根据CPU和主板, 挑选内存 硬盘, 这个比较通用, 不过 m2固态和nvme 需要看主板, 当然m2可以用PCI扩展">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己组装台式机">
+<meta property="og:url" content="https://lemisky.github.io/2020/12/07/%E8%87%AA%E5%B7%B1%E7%BB%84%E8%A3%85%E5%8F%B0%E5%BC%8F%E6%9C%BA/index.html">
+<meta property="og:site_name" content="22:22">
+<meta property="og:description" content="组装台式机的八大基本部件 CPU, AMD或Intel 散热, 这里指的是CPU散热, 风冷或水冷, 水冷又分为一体式和分体式, 其中分体式比较高端, 贵 主板, 根据CPU挑选主板, 直接到淘宝搜就可以了 显卡, 玩游戏或者视频处理需要 电源, 根据上面这些东西挑选电源 内存, 根据CPU和主板, 挑选内存 硬盘, 这个比较通用, 不过 m2固态和nvme 需要看主板, 当然m2可以用PCI扩展">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-07T02:36:34.000Z">
+<meta property="article:modified_time" content="2020-12-07T05:08:26.358Z">
+<meta property="article:author" content="foyou">
+<meta property="article:tag" content="diy">
+<meta property="article:tag" content="显示器">
+<meta property="article:tag" content="固态">
+<meta property="article:tag" content="M2">
+<meta property="article:tag" content="台式机">
+<meta property="article:tag" content="电脑">
+<meta property="article:tag" content="组装">
+<meta property="article:tag" content="键盘">
+<meta property="article:tag" content="鼠标">
+<meta property="article:tag" content="机箱">
+<meta property="article:tag" content="CPU">
+<meta property="article:tag" content="显卡">
+<meta property="article:tag" content="散热">
+<meta property="article:tag" content="水冷">
+<meta property="article:tag" content="内存条">
+<meta property="article:tag" content="硬盘">
+<meta property="article:tag" content="NVME">
+<meta property="article:tag" content="电源">
+<meta property="article:tag" content="主板">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lemisky.github.io/2020/12/07/%E8%87%AA%E5%B7%B1%E7%BB%84%E8%A3%85%E5%8F%B0%E5%BC%8F%E6%9C%BA/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>自己组装台式机 | 22:22</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">22:22</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blogs of Xiaomi Wang</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E8%A3%85%E5%8F%B0%E5%BC%8F%E6%9C%BA%E7%9A%84%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E9%83%A8%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">组装台式机的八大基本部件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E9%85%8D%E7%BD%AE-2020%E5%B9%B411%E6%9C%881%E6%97%A5"><span class="nav-number">2.</span> <span class="nav-text">我的配置 2020年11月1日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E8%B4%ADCPU"><span class="nav-number">3.</span> <span class="nav-text">如何选购CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94CPU%E7%9A%84%E6%80%A7%E8%83%BD"><span class="nav-number">3.1.</span> <span class="nav-text">对比CPU的性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU%E6%80%A7%E8%83%BD%E5%85%B3%E9%94%AE%E5%8F%82%E6%95%B0"><span class="nav-number">3.2.</span> <span class="nav-text">CPU性能关键参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%8F%82%E6%95%B0"><span class="nav-number">3.3.</span> <span class="nav-text">其他参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AMD%E4%B8%8EIntel"><span class="nav-number">3.4.</span> <span class="nav-text">AMD与Intel</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU%E6%95%A3%E7%83%AD"><span class="nav-number">4.</span> <span class="nav-text">CPU散热</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E8%B4%AD%E7%9A%84%E8%A6%81%E7%82%B9%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA"><span class="nav-number">4.1.</span> <span class="nav-text">选购的要点只有一个</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E8%B4%AD%E6%A0%87%E5%87%86"><span class="nav-number">4.2.</span> <span class="nav-text">选购标准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E8%B4%AD%E6%8A%80%E5%B7%A7"><span class="nav-number">4.3.</span> <span class="nav-text">选购技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E6%9D%BF%E7%9A%84%E9%80%89%E8%B4%AD"><span class="nav-number">5.</span> <span class="nav-text">主板的选购</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E8%B4%AD%E6%8A%80%E5%B7%A7-1"><span class="nav-number">5.1.</span> <span class="nav-text">选购技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8B%AC%E7%AB%8B%E6%98%BE%E5%8D%A1"><span class="nav-number">6.</span> <span class="nav-text">独立显卡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B5%E6%BA%90"><span class="nav-number">7.</span> <span class="nav-text">电源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E6%BA%90%E7%AD%89%E7%BA%A7"><span class="nav-number">7.1.</span> <span class="nav-text">电源等级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%81%E7%89%8C"><span class="nav-number">7.2.</span> <span class="nav-text">品牌</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AD%98"><span class="nav-number">8.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A1%AC%E7%9B%98"><span class="nav-number">9.</span> <span class="nav-text">硬盘</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%BA%E7%AE%B1"><span class="nav-number">10.</span> <span class="nav-text">机箱</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">foyou</p>
+  <div class="site-description" itemprop="description">分享每一个问题</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">107</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/07/%E8%87%AA%E5%B7%B1%E7%BB%84%E8%A3%85%E5%8F%B0%E5%BC%8F%E6%9C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          自己组装台式机
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-07 10:36:34 / 修改时间：13:08:26" itemprop="dateCreated datePublished" datetime="2020-12-07T10:36:34+08:00">2020-12-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="组装台式机的八大基本部件"><a href="#组装台式机的八大基本部件" class="headerlink" title="组装台式机的八大基本部件"></a>组装台式机的八大基本部件</h1><ol>
+<li><strong>CPU</strong>, AMD或Intel</li>
+<li><strong>散热</strong>, 这里指的是CPU散热, 风冷或水冷, 水冷又分为一体式和分体式, 其中分体式比较高端, 贵</li>
+<li><strong>主板</strong>, 根据CPU挑选主板, 直接到淘宝搜就可以了</li>
+<li><strong>显卡</strong>, 玩游戏或者视频处理需要</li>
+<li><strong>电源</strong>, 根据上面这些东西挑选电源</li>
+<li><strong>内存</strong>, 根据CPU和主板, 挑选内存</li>
+<li><strong>硬盘</strong>, 这个比较通用, 不过 m2固态和nvme 需要看主板, 当然m2可以用PCI扩展实现</li>
+<li><strong>机箱</strong>, 根据主板和显卡挑选</li>
+</ol>
+<a id="more"></a>
+
+<h1 id="我的配置-2020年11月1日"><a href="#我的配置-2020年11月1日" class="headerlink" title="我的配置 2020年11月1日"></a>我的配置 2020年11月1日</h1><table>
+<thead>
+<tr>
+<th align="center">部件</th>
+<th align="center">型号</th>
+<th align="center">其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CPU</td>
+<td align="center">AMD Ryzen 7 Pro 4750G</td>
+<td align="center">淘宝, 与主板一起购入</td>
+</tr>
+<tr>
+<td align="center">散热</td>
+<td align="center">ID-COOLING 反光污染 240水冷</td>
+<td align="center">京东 215¥</td>
+</tr>
+<tr>
+<td align="center">主板</td>
+<td align="center">MSI MAG B550M MORTAR WIFI</td>
+<td align="center">与主板 2669¥</td>
+</tr>
+<tr>
+<td align="center">显卡</td>
+<td align="center">核显, 好像与我笔记本的 gtx960M 相当</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">电源</td>
+<td align="center">安钛克 650W 半模组 铜牌 电源</td>
+<td align="center">咸鱼 236</td>
+</tr>
+<tr>
+<td align="center">内存</td>
+<td align="center">威刚 XPG 3200 8G * 2</td>
+<td align="center">咸鱼 350</td>
+</tr>
+<tr>
+<td align="center">硬盘</td>
+<td align="center">西部数据 SN750 500G NVME</td>
+<td align="center">淘宝 450</td>
+</tr>
+<tr>
+<td align="center">机箱</td>
+<td align="center">先马 黑洞7</td>
+<td align="center">京东 184</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">合计: 4104¥</td>
+</tr>
+</tbody></table>
+<h1 id="如何选购CPU"><a href="#如何选购CPU" class="headerlink" title="如何选购CPU"></a>如何选购CPU</h1><p>这个得看个人需求吧~, 说下我选购的这款 <strong>AMD Ryzen Pro 4750G</strong></p>
+<p>Intel和AMD, 为什么选AMD?</p>
+<ol>
+<li>穷, 因为穷, AMD性价比高一些</li>
+<li>穷, 还是因为穷, AMD普遍功耗小, 省电</li>
+</ol>
+<p>为什么选 <strong>Ryzen Pro 4750G</strong>, 而不是其他?</p>
+<ol>
+<li>穷, 也是因为穷, 这款是APU, 带核显, 无需单独购买显卡</li>
+<li>穷, 也还是因为穷, 今年新出, 7nm制程, 功耗小, 省电</li>
+<li>再好的就没得选了, 买不起</li>
+</ol>
+<p>有其他原因吗? 有</p>
+<ol>
+<li>不玩游戏, 不剪视频</li>
+</ol>
+<h2 id="对比CPU的性能"><a href="#对比CPU的性能" class="headerlink" title="对比CPU的性能"></a>对比CPU的性能</h2><ol>
+<li>最简单的就是网上搜评测</li>
+<li>对比详细参数, 参见下节</li>
+</ol>
+<h2 id="CPU性能关键参数"><a href="#CPU性能关键参数" class="headerlink" title="CPU性能关键参数"></a>CPU性能关键参数</h2><ol>
+<li>频率高低*核心线程数量</li>
+<li>缓存大小</li>
+</ol>
+<p>结果当然是越大越好.</p>
+<p>CPU的其他参数影响: 不管怎么说, 制程越低越好, 功耗越小越好</p>
+<h2 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h2><p><strong>插槽类型</strong>: 影响主板选购, 要选对应接口主板, 一般都是CPU厂商提供接口标准, 主板制造商去实现, 比如 微星, 华硕, 技嘉</p>
+<p><strong>内存类型</strong>: 影响内存选购, 比如最大支持的频率</p>
+<p><strong>内存描述</strong>: 一般都是双通道, 无需考虑</p>
+<p><strong>显卡参数</strong>: 有没有核显</p>
+<h2 id="AMD与Intel"><a href="#AMD与Intel" class="headerlink" title="AMD与Intel"></a>AMD与Intel</h2><p>总得来说, Intel的还是要好用些, 因为一些软件对 Intel 支持的更好.</p>
+<p>比如, Premiere就不支持AMD核显渲染, 剪辑视频只有原来笔记本的性能.</p>
+<h1 id="CPU散热"><a href="#CPU散热" class="headerlink" title="CPU散热"></a>CPU散热</h1><p>首先要注意的一点是, 不同CPU影响主板的不同, 而散热也会受影响. Intel系和AMD系的散热固定方式是不同的, 不同点在这里, 不过一般会提供两套安装支架.</p>
+<h2 id="选购的要点只有一个"><a href="#选购的要点只有一个" class="headerlink" title="选购的要点只有一个"></a>选购的要点只有一个</h2><p>看CPU的功耗, 功耗越大散热就要越好, 不然压不住.</p>
+<p>像我这款的话, 虽然功耗只有 <strong>65W</strong>, 但我还是选了水冷, 我的考虑就是不能影响CPU的性能.</p>
+<p>和我这款性能相当的 Intel CPU (某款i9), 功耗逼近 <strong>300W</strong>, 像这种得上 <strong>360水冷</strong>.</p>
+<p>我现在电脑温度, 长期稳定在 30℃ 左右, 如果真正搞事情, 也不会超过50℃, 烤机的话可能就要到 60℃ 了.</p>
+<p>一般来说:</p>
+<ul>
+<li>CPU温度只要在 80℃ 以下, 就不用慌</li>
+<li>如果电脑啥都不干就飙到 60℃, 那肯定是有问题</li>
+<li>或者高低跳动幅度很大, 那肯定也是有问题. 比如时而 40, 时而 60</li>
+</ul>
+<h2 id="选购标准"><a href="#选购标准" class="headerlink" title="选购标准"></a>选购标准</h2><p><em>具体情况按个人情况调整</em></p>
+<ol>
+<li>100W以内, 选购风冷没事, 比如 <strong>九州风神玄冰400</strong>, 这个是多平台支持的</li>
+<li>100W~200W, 240水冷(一体式的)<ol>
+<li>240指的是水冷长度, 尺寸, 与机箱大小相关</li>
+<li>常规的有 120, 240, 360</li>
+<li>分体式的不知道</li>
+</ol>
+</li>
+<li>200W以上的, 360水冷</li>
+<li>具体可网上参考别人使用心得</li>
+</ol>
+<p><strong>注意尺寸, 机箱装不装得下, 一般支持什么水冷会标明, 风冷的话直接问店家</strong></p>
+<h2 id="选购技巧"><a href="#选购技巧" class="headerlink" title="选购技巧"></a>选购技巧</h2><p>这个没啥技巧, 一般都是通用的. 主要考虑的就是压不压得住.</p>
+<h1 id="主板的选购"><a href="#主板的选购" class="headerlink" title="主板的选购"></a>主板的选购</h1><p>这个比较简单, 真的很简单. 因为CPU确定了, 主板就基本确定了, 无非就是高低档和品牌不同.</p>
+<p>例如我这款 <a target="_blank" rel="noopener" href="https://www.amd.com/zh-hans/products/apu/amd-ryzen-7-pro-4750g"><strong>Ryzen 7 Pro 4750G</strong></a>.</p>
+<p>这个是根据CPU接口来的, 买错了就 装不上去.</p>
+<p>第二个就是 <strong>不兼容</strong>, 能装但点不亮.</p>
+<h2 id="选购技巧-1"><a href="#选购技巧-1" class="headerlink" title="选购技巧"></a>选购技巧</h2><p>淘宝搜索, [CPU型号]+板U套装, 与其搭配的主板, 肯定是OK的, 剩下的就很简单了.</p>
+<p>淘宝/京东/狗夕夕 搜索, 想单独买就单独买, 想一起买就一起买.</p>
+<h1 id="独立显卡"><a href="#独立显卡" class="headerlink" title="独立显卡"></a>独立显卡</h1><p>这个看个人吧, 我不需要, 就没搞. 要是我可能会选择 <strong>咸鱼牌</strong> 的.</p>
+<h1 id="电源"><a href="#电源" class="headerlink" title="电源"></a>电源</h1><p>没有独立显卡, 400W可以, 有的话+200W.</p>
+<h2 id="电源等级"><a href="#电源等级" class="headerlink" title="电源等级"></a>电源等级</h2><p>白金、超白金最好 金牌次之 银牌 铜牌 白牌</p>
+<h2 id="品牌"><a href="#品牌" class="headerlink" title="品牌"></a>品牌</h2><p>不太懂, 具体买的时候再说, 总之电源是通用的.</p>
+<h1 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h1><p>现在组装基本都是高端吧, 对照CPU支持的频率, 看着买就行. 威刚, 海盗船啥的.</p>
+<p>咸鱼全新, 可能实惠一些.</p>
+<h1 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h1><p>强烈推荐, 支持NVME接口的主板+NVME固态硬盘.</p>
+<ul>
+<li>机械硬盘读写 大概100MB/s</li>
+<li>普通固态读写 大概 500MB/s</li>
+<li>牛逼NVME, 就我这款, 2500MB/s</li>
+</ul>
+<p>所以知道了吧~</p>
+<h1 id="机箱"><a href="#机箱" class="headerlink" title="机箱"></a>机箱</h1><p>注意看支不支持你选购的主板和散热. 多的不用说, 实际操作一下, 你啥都知道了.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/diy/" rel="tag"># diy</a>
+              <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8/" rel="tag"># 显示器</a>
+              <a href="/tags/%E5%9B%BA%E6%80%81/" rel="tag"># 固态</a>
+              <a href="/tags/M2/" rel="tag"># M2</a>
+              <a href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA/" rel="tag"># 台式机</a>
+              <a href="/tags/%E7%94%B5%E8%84%91/" rel="tag"># 电脑</a>
+              <a href="/tags/%E7%BB%84%E8%A3%85/" rel="tag"># 组装</a>
+              <a href="/tags/%E9%94%AE%E7%9B%98/" rel="tag"># 键盘</a>
+              <a href="/tags/%E9%BC%A0%E6%A0%87/" rel="tag"># 鼠标</a>
+              <a href="/tags/%E6%9C%BA%E7%AE%B1/" rel="tag"># 机箱</a>
+              <a href="/tags/CPU/" rel="tag"># CPU</a>
+              <a href="/tags/%E6%98%BE%E5%8D%A1/" rel="tag"># 显卡</a>
+              <a href="/tags/%E6%95%A3%E7%83%AD/" rel="tag"># 散热</a>
+              <a href="/tags/%E6%B0%B4%E5%86%B7/" rel="tag"># 水冷</a>
+              <a href="/tags/%E5%86%85%E5%AD%98%E6%9D%A1/" rel="tag"># 内存条</a>
+              <a href="/tags/%E7%A1%AC%E7%9B%98/" rel="tag"># 硬盘</a>
+              <a href="/tags/NVME/" rel="tag"># NVME</a>
+              <a href="/tags/%E7%94%B5%E6%BA%90/" rel="tag"># 电源</a>
+              <a href="/tags/%E4%B8%BB%E6%9D%BF/" rel="tag"># 主板</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/06/Powershell%E4%B8%AD%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" rel="prev" title="Powershell中设置环境变量">
+                  <i class="fa fa-chevron-left"></i> Powershell中设置环境变量
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">foyou</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
