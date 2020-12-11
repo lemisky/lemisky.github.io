@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lemisky.github.io","root":"/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="转自: https:&#x2F;&#x2F;helpdeskgeek.com&#x2F;windows-10&#x2F;what-is-compattelrunner-exe-in-windows-10-and-can-it-be-disabled&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows中的CompatTelRunner.exe进程">
+<meta property="og:url" content="https://lemisky.github.io/2020/12/09/Windows%E4%B8%AD%E7%9A%84CompatTelRunner-exe%E8%BF%9B%E7%A8%8B/index.html">
+<meta property="og:site_name" content="22:22">
+<meta property="og:description" content="转自: https:&#x2F;&#x2F;helpdeskgeek.com&#x2F;windows-10&#x2F;what-is-compattelrunner-exe-in-windows-10-and-can-it-be-disabled&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lemisky.github.io/images/Windows-CompatTelRunner-Featured.png.webp">
+<meta property="og:image" content="https://lemisky.github.io/images/Microsoft-Data-Collection-Explained.png.webp">
+<meta property="og:image" content="https://lemisky.github.io/images/CompatTelRunner-Task-Manager.png.webp">
+<meta property="og:image" content="https://lemisky.github.io/images/Windows-Launch-Settings-3.png.webp">
+<meta property="og:image" content="https://lemisky.github.io/images/Windows-Set-Diagnostic-Data.png.webp">
+<meta property="og:image" content="https://lemisky.github.io/images/Windows-Delete-Diagnostic-Data.png.webp">
+<meta property="og:image" content="https://lemisky.github.io/images/Windows-Launch-Run-1.png.webp">
+<meta property="og:image" content="https://lemisky.github.io/images/Windows-Run-Taskchd.png.webp">
+<meta property="og:image" content="https://lemisky.github.io/images/Windows-Taskchd-Disable-Telemetry.png.webp">
+<meta property="og:image" content="https://lemisky.github.io/images/Windows-Launch-Run-2.png.webp">
+<meta property="og:image" content="https://lemisky.github.io/images/Windows-Run-Regedit.png.webp">
+<meta property="og:image" content="https://lemisky.github.io/images/Windows-Regedit-Create-DWord.png.webp">
+<meta property="og:image" content="https://lemisky.github.io/images/Windows-Regedit-Allow-Telemetry.png.webp">
+<meta property="article:published_time" content="2020-12-09T10:58:22.000Z">
+<meta property="article:modified_time" content="2020-12-09T11:17:56.973Z">
+<meta property="article:author" content="foyou">
+<meta property="article:tag" content="CompatTelRunner.exe">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="win10">
+<meta property="article:tag" content="自启">
+<meta property="article:tag" content="服务">
+<meta property="article:tag" content="遥测">
+<meta property="article:tag" content="兼容">
+<meta property="article:tag" content="系统">
+<meta property="article:tag" content="优化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lemisky.github.io/images/Windows-CompatTelRunner-Featured.png.webp">
+
+
+<link rel="canonical" href="https://lemisky.github.io/2020/12/09/Windows%E4%B8%AD%E7%9A%84CompatTelRunner-exe%E8%BF%9B%E7%A8%8B/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Windows中的CompatTelRunner.exe进程 | 22:22</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">22:22</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blogs of Xiaomi Wang</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCompatTelRunner-exe%EF%BC%8C%E5%AE%89%E5%85%A8%E5%90%97%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是CompatTelRunner.exe，安全吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E5%9B%A0%E5%AF%BC%E8%87%B4CompatTelRunner-exe%E9%AB%98CPU%E5%92%8C%E7%A3%81%E7%9B%98%E4%BD%BF%E7%94%A8%E7%8E%87"><span class="nav-number">2.</span> <span class="nav-text">是什么原因导致CompatTelRunner.exe高CPU和磁盘使用率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E9%80%80%E5%87%BAWindows-10%E9%81%A5%E6%B5%8B%E6%95%B0%E6%8D%AE"><span class="nav-number">3.</span> <span class="nav-text">如何选择退出Windows 10遥测数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8Windows-10%E4%B8%AD%E5%AE%8C%E5%85%A8%E7%A6%81%E7%94%A8CompatTelRunner"><span class="nav-number">4.</span> <span class="nav-text">如何在Windows 10中完全禁用CompatTelRunner</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96Windows-10%E5%AE%89%E8%A3%85"><span class="nav-number">5.</span> <span class="nav-text">优化Windows 10安装</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">foyou</p>
+  <div class="site-description" itemprop="description">分享每一个问题</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">173</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/09/Windows%E4%B8%AD%E7%9A%84CompatTelRunner-exe%E8%BF%9B%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Windows中的CompatTelRunner.exe进程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-09 18:58:22 / 修改时间：19:17:56" itemprop="dateCreated datePublished" datetime="2020-12-09T18:58:22+08:00">2020-12-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>转自: <a target="_blank" rel="noopener" href="https://helpdeskgeek.com/windows-10/what-is-compattelrunner-exe-in-windows-10-and-can-it-be-disabled/">https://helpdeskgeek.com/windows-10/what-is-compattelrunner-exe-in-windows-10-and-can-it-be-disabled/</a></p>
+</blockquote>
+<a id="more"></a>
+
+<p>Microsoft已开发Windows操作系统，以便对其用户提供尽可能多的帮助。它包含的功能可让您使用Windows设置菜单中的内置Windows故障排除程序快速解决并解决常见问题，从<a target="_blank" rel="noopener" href="https://helpdeskgeek.com/windows-10/how-to-fix-a-stuck-windows-10-update/">卡死的Windows更新</a>到<a target="_blank" rel="noopener" href="https://www.online-tech-tips.com/windows-10/how-to-troubleshoot-common-printer-problems-in-windows-10/">常见的打印机问题</a>。</p>
+<p>这是因为Windows从大量使用中的数百万Windows PC和笔记本电脑中收集了大量使用数据，从而可以在出现问题时对其进行故障排除。这部分要归功于您会在PC上运行的CompatTelRunner进程。这是您需要了解的所有内容，包括如何禁用它。</p>
+<p><img src="/images/Windows-CompatTelRunner-Featured.png.webp" alt="img"></p>
+<h2 id="什么是CompatTelRunner-exe，安全吗？"><a href="#什么是CompatTelRunner-exe，安全吗？" class="headerlink" title="什么是CompatTelRunner.exe，安全吗？"></a><strong>什么是CompatTelRunner.exe，安全吗？</strong></h2><p>该<strong>CompatTelRunner.exe</strong>系统的过程涉及到<strong>微软兼容性遥测</strong>服务。此服务从Windows 10系统收集使用情况数据，包括有关第三方应用程序和服务的信息。</p>
+<p>根据Microsoft的说法，此数据用于帮助改善用户体验，使它在修复主要错误或安全性问题上具有优势。如果大量用户在某些服务或应用上的性能相似，则可以在新更新中快速对其进行修补。</p>
+<p><img src="/images/Microsoft-Data-Collection-Explained.png.webp" alt="img"></p>
+<p>它收集的数据主要是匿名的，但是会收集一些特定的使用情况数据，包括系统规格，当前设置以及已安装软件的列表。这是由CompatTelRunner.exe进程收集的，该进程会定期整理数据并将其发送回Microsoft进行分析。</p>
+<p>作为Windows系统服务，此过程绝对安全，但是您可能会担心PC与Microsoft共享的数据量（即使它是匿名的）。也有系统性能问题要考虑，因为据报道CompatTelRunner进程会导致CPU和磁盘使用率很高。</p>
+<p>幸运的是，您可以在Windows设置菜单中选择退出该数据分析程序，如下所述。您也可以强行禁用该服务，以防止再次激活该服务。</p>
+<h2 id="是什么原因导致CompatTelRunner-exe高CPU和磁盘使用率"><a href="#是什么原因导致CompatTelRunner-exe高CPU和磁盘使用率" class="headerlink" title="是什么原因导致CompatTelRunner.exe高CPU和磁盘使用率"></a><strong>是什么原因导致CompatTelRunner.exe高CPU和磁盘使用率</strong></h2><p>大多数用户在运行CompatTelRunner进程时不会看到增加的系统资源使用率，但是在某些情况下，您可能会发现Windows Task Manager中显示CompatTelRunner具有较高的CPU或磁盘使用率。</p>
+<p><img src="/images/CompatTelRunner-Task-Manager.png.webp" alt="img"></p>
+<p>CompatTelRunner流程使用的数据收集操作（包括将数据发送到Microsoft）有时可能会对旧PC产生影响。如果您使用的是较旧的Windows PC或笔记本电脑，则可能会导致磁盘或CPU使用率更高。</p>
+<p>如果像CompatTelRunner.exe这样的系统进程正在使用大量的系统资源并减慢运行速度，则有必要将其关闭。这将禁用其数据收集活动，从而为其他软件释放PC资源。</p>
+<h2 id="如何选择退出Windows-10遥测数据"><a href="#如何选择退出Windows-10遥测数据" class="headerlink" title="如何选择退出Windows 10遥测数据"></a><strong>如何选择退出Windows 10遥测数据</strong></h2><p>您可以在Windows设置菜单中选择退出Microsoft兼容性遥测服务（至少部分）。这将停止许多数据收集活动，在某些情况下，这些活动可能导致Windows 10 PC出现问题。</p>
+<p>但是，这不会完全禁用该服务。退出Microsoft的诊断数据收集只会减少收集的数据量，将其限制为设备配置，运行状况和设置。如果要完全禁用此功能，则需要跳到下一部分。</p>
+<ol>
+<li>要退出，您需要打开Windows 10设置菜单。右键单击开始菜单，然后选择<strong>设置</strong>以继续。</li>
+</ol>
+<p><img src="/images/Windows-Launch-Settings-3.png.webp" alt="img"></p>
+<ol>
+<li>在“<strong>设置”</strong>窗口中，选择“<strong>隐私”&gt;“诊断和反馈”。</strong>虽然不可能完全禁用诊断数据收集，但是可以将其设置为基本收集级别，这将有助于减少对PC的影响。为此，请从“<strong>诊断数据”</strong>选项中选择“<strong>必需的诊断数据”</strong>（或在Windows 10较旧的版本中为“<strong>基本</strong>”）。</li>
+</ol>
+<p><img src="/images/Windows-Set-Diagnostic-Data.png.webp" alt="img"></p>
+<ol>
+<li>您所做的更改将立即应用，但是请确保您重新启动PC。但是，退出遥测数据收集不会删除任何以前收集的数据。要删除此数据，请向下滚动至“<strong>删除诊断数据”</strong>部分，然后选择“<strong>删除”</strong>选项。</li>
+</ol>
+<p><img src="/images/Windows-Delete-Diagnostic-Data.png.webp" alt="img"></p>
+<p>删除以前保存的诊断数据会将其从您的PC上删除，但它还会指示Microsoft从其服务器中删除该数据的所有副本。这将确保您的隐私根据当地隐私法律得到维护。</p>
+<h2 id="如何在Windows-10中完全禁用CompatTelRunner"><a href="#如何在Windows-10中完全禁用CompatTelRunner" class="headerlink" title="如何在Windows 10中完全禁用CompatTelRunner"></a><strong>如何在Windows 10中完全禁用CompatTelRunner</strong></h2><p>无法在Windows设置中完全禁用Microsoft兼容性遥测服务。如果要完全禁用它，可以通过停止在“任务计划程序”中为其安排的常规数据收集任务来禁用它。</p>
+<p>您也可以通过在Windows注册表中为CompatTelRunner添加一个条目来禁用它。即使更新Windows，使用这两种方法也可以确保在您的PC上完全禁用该服务。这将防止收集任何其他数据。</p>
+<ol>
+<li>要为CompatTelRunner禁用计划的数据收集任务，您需要打开<strong>Task Scheduler</strong>。为此，请按住<strong>Windows + R键</strong>打开“<strong>运行”</strong>命令框（或右键单击“开始”菜单，然后选择<strong>“运行”</strong>）。</li>
+</ol>
+<p><img src="/images/Windows-Launch-Run-1.png.webp" alt="img"></p>
+<ol>
+<li>在“<strong>运行”</strong>命令框中，键入<strong>taskchd.msc</strong>，然后按<strong>Enter</strong>。这将在新窗口中打开任务计划程序。</li>
+</ol>
+<p><img src="/images/Windows-Run-Taskchd.png.webp" alt="img"></p>
+<ol>
+<li>使用左侧的树菜单，打开“<strong>任务计划程序库\ Microsoft \ Windows \ Application Experience”</strong>文件夹。右键单击“ <strong>Microsoft兼容性评估器”，“ PcaPatchDbTask”</strong>和“ <strong>ProgramDataUpdater”</strong>任务，然后为每个任务选择“<strong>禁用”</strong>选项。这将阻止数据收集任务在您的PC上运行。</li>
+</ol>
+<p><img src="/images/Windows-Taskchd-Disable-Telemetry.png.webp" alt="img"></p>
+<p>下一步是在Windows注册表编辑器中禁用Windows遥测数据。这将有助于确保该服务保持禁用状态。 </p>
+<ol>
+<li>为此，请按住<strong>Windows + R键</strong>打开<strong>“运行”</strong>（或右键单击“开始”菜单，然后选择<strong>“运行”</strong>）。</li>
+</ol>
+<p><img src="/images/Windows-Launch-Run-2.png.webp" alt="img"></p>
+<ol>
+<li>在“<strong>运行”</strong>命令框中，键入<strong>regedit</strong>，然后按<strong>Enter</strong>打开注册表编辑器。</li>
+</ol>
+<p><img src="/images/Windows-Run-Regedit.png.webp" alt="img"></p>
+<ol>
+<li>在“<strong>注册表编辑器”</strong>窗口中，使用左侧的树菜单打开<strong>Computer \ HKEY_LOCAL_MACHINE \ SOFTWARE \ Policies \ Microsoft \ Windows \ DataCollection</strong>文件夹。在右侧，右键单击空白，然后选择“<strong>新建”&gt;“</strong> <strong>DWORD（32位）值”</strong>选项。</li>
+</ol>
+<p><img src="/images/Windows-Regedit-Create-DWord.png.webp" alt="img"></p>
+<ol>
+<li>将新值命名为<strong>Allow Telemetry</strong>，然后双击它。在选项框中，将<strong>值数据</strong>设置为<strong>0</strong>，然后选择“<strong>确定”</strong>进行保存。</li>
+</ol>
+<p><img src="/images/Windows-Regedit-Allow-Telemetry.png.webp" alt="img"></p>
+<p>设置好值后，您可以关闭注册表编辑器并重新启动PC。这样可以确保禁用PC上的所有数据收集活动（出于故障排除的目的），并且CompatTelRunner服务不再处于活动状态并计划运行。</p>
+<h2 id="优化Windows-10安装"><a href="#优化Windows-10安装" class="headerlink" title="优化Windows 10安装"></a><strong>优化Windows 10安装</strong></h2><p>尽管CompatTelRunner.exe进程是安全的，但与Microsoft共享大量使用情况数据时，您可能会<a target="_blank" rel="noopener" href="https://helpdeskgeek.com/free-tools-review/give-yourself-a-privacy-makeover/">担心隐私</a>。在这种情况下，选择不使用遥测数据并强制禁用CompatTelRunner系统服务都是明智的选择，它们不会影响Windows 10的性能。</p>
+<p>如果CompatTelRunner进程为您的PC带来了较高的CPU或磁盘使用率，则禁用它会优化Windows 10的安装。您可以通过<a target="_blank" rel="noopener" href="https://www.online-tech-tips.com/computer-tips/how-to-optimize-the-paging-file-in-windows/">优化分页文件</a>来加快PC的运行速度，尽管在考虑<a target="_blank" rel="noopener" href="https://helpdeskgeek.com/help-desk/what-should-i-upgrade-on-my-pc-investing-in-the-right-hardware/">升级PC</a>之前，还有其他方法可以<a target="_blank" rel="noopener" href="https://helpdeskgeek.com/how-to/99-ways-to-make-your-computer-blazingly-fast/">使PC更快</a>，但您可以<a target="_blank" rel="noopener" href="https://helpdeskgeek.com/how-to/99-ways-to-make-your-computer-blazingly-fast/">采取</a>其他措施。</p>
+<p><a target="_blank" rel="noopener" href="https://www.online-tech-tips.com/">https://www.online-tech-tips.com/</a></p>
+<p><a target="_blank" rel="noopener" href="https://helpdeskgeek.com/">https://helpdeskgeek.com/</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CompatTelRunner-exe/" rel="tag"># CompatTelRunner.exe</a>
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
+              <a href="/tags/win10/" rel="tag"># win10</a>
+              <a href="/tags/%E8%87%AA%E5%90%AF/" rel="tag"># 自启</a>
+              <a href="/tags/%E6%9C%8D%E5%8A%A1/" rel="tag"># 服务</a>
+              <a href="/tags/%E9%81%A5%E6%B5%8B/" rel="tag"># 遥测</a>
+              <a href="/tags/%E5%85%BC%E5%AE%B9/" rel="tag"># 兼容</a>
+              <a href="/tags/%E7%B3%BB%E7%BB%9F/" rel="tag"># 系统</a>
+              <a href="/tags/%E4%BC%98%E5%8C%96/" rel="tag"># 优化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/09/%E5%A6%82%E4%BD%95%E5%B9%B2%E6%8E%89%E8%BF%85%E9%9B%B711%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/" rel="prev" title="如何干掉迅雷11开机自启">
+                  <i class="fa fa-chevron-left"></i> 如何干掉迅雷11开机自启
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/12/09/Powershell%E4%B8%AD%E7%9A%84%E6%B8%85%E5%B1%8F%E5%BF%AB%E6%8D%B7%E9%94%AE-Ctrl-L%E4%B8%8D%E5%8F%AF%E7%94%A8/" rel="next" title="Powershell中的清屏快捷键-Ctrl+L不可用">
+                  Powershell中的清屏快捷键-Ctrl+L不可用 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">foyou</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
