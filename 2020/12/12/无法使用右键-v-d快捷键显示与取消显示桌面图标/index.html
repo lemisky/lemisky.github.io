@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lemisky.github.io","root":"/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="正常情况桌面空白处 右键+V,D, 可以快速设置 显示&#x2F;隐藏 桌面图标, 不需要鼠标点点点. 但是现在失效了, 一直没处理, 现在来搞搞.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无法使用右键+v,d快捷键显示与取消显示桌面图标">
+<meta property="og:url" content="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/index.html">
+<meta property="og:site_name" content="22:22">
+<meta property="og:description" content="正常情况桌面空白处 右键+V,D, 可以快速设置 显示&#x2F;隐藏 桌面图标, 不需要鼠标点点点. 但是现在失效了, 一直没处理, 现在来搞搞.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/images/image-20201212132906249.png">
+<meta property="og:image" content="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/images/image-20201212133654271.png">
+<meta property="og:image" content="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/images/image-20201212134054864.png">
+<meta property="og:image" content="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/images/image-20201212134325309.png">
+<meta property="og:image" content="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/images/image-20201212134900904.png">
+<meta property="og:image" content="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/images/image-20201212135200434.png">
+<meta property="og:image" content="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/images/image-20201212155503839.png">
+<meta property="og:image" content="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/images/image-20201212155934143.png">
+<meta property="og:image" content="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/images/image-20201212160436039.png">
+<meta property="og:image" content="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/images/image-20201212194844731.png">
+<meta property="og:image" content="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/images/image-20201212195718195.png">
+<meta property="article:published_time" content="2020-12-12T05:23:04.000Z">
+<meta property="article:modified_time" content="2020-12-12T11:57:18.473Z">
+<meta property="article:author" content="foyou">
+<meta property="article:tag" content="右键">
+<meta property="article:tag" content="桌面">
+<meta property="article:tag" content="图标">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/images/image-20201212132906249.png">
+
+
+<link rel="canonical" href="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>无法使用右键+v,d快捷键显示与取消显示桌面图标 | 22:22</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">22:22</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blogs of Xiaomi Wang</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%97%A0%E6%9E%9C"><span class="nav-number">1.</span> <span class="nav-text">搜索注册表无果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7%E6%A3%80%E6%9F%A5"><span class="nav-number">2.</span> <span class="nav-text">使用工具检查</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%BC%80%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%9F%A5%E7%9C%8B"><span class="nav-number">2.1.</span> <span class="nav-text">打开注册表查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%BD%8D%E5%88%B0-VSLauncherUI-dll-%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">定位到 VSLauncherUI.dll 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-ResourceHacker-%E5%B7%A5%E5%85%B7%E8%BF%9B%E8%A1%8C%E6%9F%A5%E7%9C%8B%E5%B9%B6%E4%BF%AE%E6%94%B9"><span class="nav-number">2.3.</span> <span class="nav-text">使用 ResourceHacker 工具进行查看并修改</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A5%87%E6%80%AA%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">奇怪的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="nav-number">4.</span> <span class="nav-text">尝试清除缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Net%E7%A8%8B%E5%BA%8F%E9%9B%86%E7%BC%93%E5%AD%98"><span class="nav-number">4.1.</span> <span class="nav-text">Net程序集缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows%E9%A2%84%E8%AF%BB%E6%96%87%E4%BB%B6"><span class="nav-number">4.2.</span> <span class="nav-text">Windows预读文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E7%90%86%E6%89%80%E6%9C%89%E8%AF%95%E8%AF%95"><span class="nav-number">4.3.</span> <span class="nav-text">清理所有试试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MuiCache"><span class="nav-number">5.</span> <span class="nav-text">MuiCache</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%A9%E4%B8%8B%E7%9A%84%E5%B0%B1%E6%98%AF%E4%BF%AE%E6%94%B9%E4%BA%86-Nice"><span class="nav-number">6.</span> <span class="nav-text">剩下的就是修改了 - Nice</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">foyou</p>
+  <div class="site-description" itemprop="description">分享每一个问题</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">187</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/12/%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%8F%B3%E9%94%AE-v-d%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%BE%E7%A4%BA%E4%B8%8E%E5%8F%96%E6%B6%88%E6%98%BE%E7%A4%BA%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          无法使用右键+v,d快捷键显示与取消显示桌面图标
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-12 13:23:04 / 修改时间：19:57:18" itemprop="dateCreated datePublished" datetime="2020-12-12T13:23:04+08:00">2020-12-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>正常情况桌面空白处 <code>右键+V,D</code>, 可以快速设置 <strong>显示/隐藏</strong> 桌面图标, 不需要鼠标点点点.</p>
+<p>但是现在失效了, 一直没处理, 现在来搞搞.</p>
+<a id="more"></a>
+
+<p><img src="images/image-20201212132906249.png" alt="image-20201212132906249"></p>
+<p>VS这个快捷键有些多余, 删除呗.</p>
+<h1 id="搜索注册表无果"><a href="#搜索注册表无果" class="headerlink" title="搜索注册表无果"></a>搜索注册表无果</h1><h1 id="使用工具检查"><a href="#使用工具检查" class="headerlink" title="使用工具检查"></a>使用工具检查</h1><p><a target="_blank" rel="noopener" href="http://drag0n.blogbus.com/">RightMenuMgr</a></p>
+<p><img src="images/image-20201212133654271.png" alt="image-20201212133654271"></p>
+<h2 id="打开注册表查看"><a href="#打开注册表查看" class="headerlink" title="打开注册表查看"></a>打开注册表查看</h2><blockquote>
+<p>计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell\AnyCode</p>
+<p>@C:\Program Files (x86)\Common Files\Microsoft Shared\MSEnv\2052\VSLauncherUI.dll,-1002</p>
+</blockquote>
+<p><img src="images/image-20201212134054864.png" alt="image-20201212134054864"></p>
+<h2 id="定位到-VSLauncherUI-dll-文件"><a href="#定位到-VSLauncherUI-dll-文件" class="headerlink" title="定位到 VSLauncherUI.dll 文件"></a>定位到 <code>VSLauncherUI.dll</code> 文件</h2><p><img src="images/image-20201212134325309.png" alt="image-20201212134325309"></p>
+<h2 id="使用-ResourceHacker-工具进行查看并修改"><a href="#使用-ResourceHacker-工具进行查看并修改" class="headerlink" title="使用 ResourceHacker 工具进行查看并修改"></a>使用 <code>ResourceHacker</code> 工具进行查看并修改</h2><p><a target="_blank" rel="noopener" href="http://www.angusj.com/resourcehacker/">resourcehacker</a></p>
+<p><img src="images/image-20201212134900904.png" alt="image-20201212134900904"></p>
+<p><img src="images/image-20201212135200434.png" alt="image-20201212135200434"></p>
+<p><strong>如果提示错误, 请检查权限问题</strong></p>
+<h1 id="奇怪的问题"><a href="#奇怪的问题" class="headerlink" title="奇怪的问题"></a>奇怪的问题</h1><p>到这里发生没有生效(不是有没有重启的问题, 菜单项是实时读取注册表的), 还是这样, 再检查 <strong>dll</strong> 文件, 确实是改了. 又研究一番, 得出结论如下:</p>
+<ol>
+<li><p>其实是可以不用改 <strong>DLL</strong> 的, 直接修改, 如图</p>
+<p><img src="images/image-20201212155503839.png" alt="image-20201212155503839"></p>
+</li>
+<li><p>为什么改了 <strong>DLL</strong> 还没有生效呢? 这是缓存的问题.</p>
+<p>使用 <strong><a target="_blank" rel="noopener" href="https://www.chuyu.me/zh-Hans/">Dism++</a></strong> 工具琢磨一下.</p>
+</li>
+</ol>
+<h1 id="尝试清除缓存"><a href="#尝试清除缓存" class="headerlink" title="尝试清除缓存"></a>尝试清除缓存</h1><h2 id="Net程序集缓存"><a href="#Net程序集缓存" class="headerlink" title="Net程序集缓存"></a>Net程序集缓存</h2><blockquote>
+<p>C:\Windows\assembly\ … </p>
+</blockquote>
+<p><img src="images/image-20201212155934143.png" alt="image-20201212155934143"></p>
+<h2 id="Windows预读文件"><a href="#Windows预读文件" class="headerlink" title="Windows预读文件"></a>Windows预读文件</h2><blockquote>
+<p>C:\Windows\Prefetch\</p>
+</blockquote>
+<p><img src="images/image-20201212160436039.png" alt="image-20201212160436039"></p>
+<p><strong>无效</strong></p>
+<h2 id="清理所有试试"><a href="#清理所有试试" class="headerlink" title="清理所有试试"></a>清理所有试试</h2><p>还是无效.</p>
+<p>删除了 <strong>DLL</strong> 文件还是没用.</p>
+<p>猜测应该是再注册表中, 以二进制的形式保存.</p>
+<h1 id="MuiCache"><a href="#MuiCache" class="headerlink" title="MuiCache"></a>MuiCache</h1><p>找到了, 在注册表中, 就是这个 <strong>MuiCache</strong>, 什么是 <strong>MuiCache</strong> 呢? 其实就是对应用程序信息的 缓存.</p>
+<p>详细信息 参考 <a target="_blank" rel="noopener" href="https://www.nirsoft.net/utils/muicache_view.html">这里</a></p>
+<p><img src="images/image-20201212194844731.png" alt="image-20201212194844731"></p>
+<h1 id="剩下的就是修改了-Nice"><a href="#剩下的就是修改了-Nice" class="headerlink" title="剩下的就是修改了 - Nice"></a>剩下的就是修改了 - Nice</h1><blockquote>
+<p>计算机\HKEY_USERS\S-1-5-21-2910908324-809383964-3860389897-1001\SOFTWARE\Classes\Local Settings\MuiCache\3f4\AAF68885</p>
+</blockquote>
+<p><img src="images/image-20201212195718195.png" alt="image-20201212195718195"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8F%B3%E9%94%AE/" rel="tag"># 右键</a>
+              <a href="/tags/%E6%A1%8C%E9%9D%A2/" rel="tag"># 桌面</a>
+              <a href="/tags/%E5%9B%BE%E6%A0%87/" rel="tag"># 图标</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/12/%E9%80%9A%E8%BF%87dig%E6%8C%87%E5%AE%9Adns%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D/" rel="prev" title="通过dig指定dns解析域名">
+                  <i class="fa fa-chevron-left"></i> 通过dig指定dns解析域名
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/12/12/%E4%BB%A5%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E6%89%93%E5%BC%80%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8D%E8%83%BD%E6%8B%96%E6%8B%BD%E6%96%87%E4%BB%B6/" rel="next" title="以管理员权限打开的应用不能拖拽文件">
+                  以管理员权限打开的应用不能拖拽文件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">foyou</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
