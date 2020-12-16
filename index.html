@@ -162,12 +162,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">197</span>
+        <span class="site-state-item-count">209</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -199,6 +199,349 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/16/%E5%85%B3%E4%BA%8Ewin10%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/16/%E5%85%B3%E4%BA%8Ewin10%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" class="post-title-link" itemprop="url">关于win10的环境变量</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-16 14:17:35 / 修改时间：15:53:51" itemprop="dateCreated datePublished" datetime="2020-12-16T14:17:35+08:00">2020-12-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="win10中有两种环境变量"><a href="#win10中有两种环境变量" class="headerlink" title="win10中有两种环境变量"></a>win10中有两种环境变量</h1><ol>
+<li>用户变量, 只针对当前用户有效</li>
+<li>系统变量</li>
+</ol>
+<p><img src="images/image-20201216142229038.png" alt="image-20201216142229038"></p>
+<h1 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h1><p>经过一些测试得出如下结论:</p>
+<p>虽然都是环境变量, 但是也有区别. 比如 <code>Path</code> 是一个特殊的环境变量. 看图, 在注册表中环境变量的类型有好多种</p>
+<p><img src="images/image-20201216153758268.png" alt="image-20201216153758268"></p>
+<ul>
+<li><p><strong>REG_SZ</strong> 是字符串类型 - 用户变量优先</p>
+<p>针对这种情况, 用户变量优先, 系统同名变量忽略</p>
+</li>
+<li><p><strong>REG_EXPAND_SZ</strong> 是 <em>可扩充字符串值</em>  - 系统优先</p>
+<p>例如 <strong>Path</strong>, 像这种, 是将 系统+用户 拼接起来.</p>
+<p><img src="images/image-20201216142729178.png" alt="image-20201216142729178"></p>
+<p><em>这种情况下, 通过此图不难得出 <strong>系统变量</strong> 优先于 <strong>用户变量</strong> 的结论</em></p>
+</li>
+</ul>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p><strong>针对可扩充类型环境变量, 貌似自定义无效.</strong></p>
+<p><img src="images/image-20201216154810738.png" alt="image-20201216154810738"></p>
+<p><img src="images/image-20201216154847896.png" alt="image-20201216154847896"></p>
+<p><strong>重启计算机后</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PS</span> D:\Users\foyou\TODO\PowerShell&gt; <span class="variable">$env:TesT</span></span><br><span class="line">C:\Users\foyou\AppData\Local\Microsoft\WindowsApps;</span><br></pre></td></tr></table></figure>
+
+<h1 id="环境变量对应的注册表位置"><a href="#环境变量对应的注册表位置" class="headerlink" title="环境变量对应的注册表位置"></a>环境变量对应的注册表位置</h1><ol>
+<li><p>用户变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">计算机\HKEY_CURRENT_USER\Environment</span><br></pre></td></tr></table></figure>
+
+<p><img src="images/image-20201216144210915.png" alt="image-20201216144210915"></p>
+</li>
+<li><p>系统变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment</span><br><span class="line"></span><br><span class="line">HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Session Manager\Environment</span><br><span class="line"></span><br><span class="line"># 这两个位置一摸一样, CurrentControlSet 映射于 ControlSet001 </span><br><span class="line"></span><br><span class="line"># 经过实验测试, 修改任意一个都可以</span><br><span class="line"></span><br><span class="line">所以推荐:</span><br><span class="line">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="环境变量读取与临时修改"><a href="#环境变量读取与临时修改" class="headerlink" title="环境变量读取与临时修改"></a>环境变量读取与临时修改</h1><h2 id="BAT"><a href="#BAT" class="headerlink" title="BAT"></a>BAT</h2><h3 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h3><p>加俩 <code>%</code> 即可</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">D:\<span class="title">Users</span>\<span class="title">foyou</span>\<span class="title">TODO</span>\<span class="title">PowerShell</span>&gt;<span class="title">echo</span> %<span class="title">windir</span>%</span></span><br><span class="line"><span class="function"><span class="title">C</span>:\<span class="title">Windows</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">D:\Users\foyou\TODO\PowerShell&gt;set windir&#x3D;123;%windir%</span><br><span class="line"></span><br><span class="line">D:\Users\foyou\TODO\PowerShell&gt;echo %windir%</span><br><span class="line">123;C:\Windows</span><br></pre></td></tr></table></figure>
+
+<h2 id="Powershell"><a href="#Powershell" class="headerlink" title="Powershell"></a>Powershell</h2><h3 id="读"><a href="#读" class="headerlink" title="读"></a>读</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS D:\Users\foyou\TODO\PowerShell&gt; $env:windir</span><br><span class="line">C:\Windows</span><br></pre></td></tr></table></figure>
+
+<h3 id="写"><a href="#写" class="headerlink" title="写"></a>写</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS D:\Users\foyou\TODO\PowerShell&gt; $env:windir&#x3D;&quot;123;$env:windir&quot;</span><br><span class="line">PS D:\Users\foyou\TODO\PowerShell&gt; $env:windir</span><br><span class="line">123;C:\Windows</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[System.Environment]::SetEnvironmentVariable(&#39;test&#39;,&#39;test&#39;)</span><br><span class="line">[System.Environment]::GetEnvironmentVariable(&#39;test&#39;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="全局修改-永久-环境变量"><a href="#全局修改-永久-环境变量" class="headerlink" title="全局修改(永久)环境变量"></a>全局修改(永久)环境变量</h1><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 系统类型设置, 需要管理员权限</span></span><br><span class="line">[<span class="type">Environment</span>]::SetEnvironmentVariable(<span class="string">&#x27;test&#x27;</span>, <span class="string">&#x27;test&#x27;</span>, [<span class="type">System.EnvironmentVariableTarget</span>]::Machine)</span><br><span class="line">[<span class="type">Environment</span>]::SetEnvironmentVariable(<span class="string">&quot;test&quot;</span>, <span class="string">&#x27;test&#x27;</span>, [<span class="type">System.EnvironmentVariableTarget</span>]::User)</span><br></pre></td></tr></table></figure>
+
+<p>或者改注册表也可以.</p>
+<p>或者用调用其他语言的API.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/15/%E4%B8%80%E4%BA%9B%E6%BA%90%E7%A0%81%E6%9F%A5%E7%9C%8B%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/15/%E4%B8%80%E4%BA%9B%E6%BA%90%E7%A0%81%E6%9F%A5%E7%9C%8B%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">一些源码查看分析工具</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-15 22:15:47 / 修改时间：22:21:19" itemprop="dateCreated datePublished" datetime="2020-12-15T22:15:47+08:00">2020-12-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="收费"><a href="#收费" class="headerlink" title="收费"></a>收费</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://www.sourceinsight.com/">sourceInsight</a></li>
+<li><a target="_blank" rel="noopener" href="https://licensing.scitools.com/download">Understand</a></li>
+</ol>
+<h1 id="免费"><a href="#免费" class="headerlink" title="免费"></a>免费</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/oracle/opengrok">OpenGrok</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.sourcetrail.com/">sourcetrail</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/15/win10%E4%B8%AD%E8%BF%90%E8%A1%8C%E7%AA%97%E5%8F%A3%E5%BF%AB%E6%8D%B7%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/15/win10%E4%B8%AD%E8%BF%90%E8%A1%8C%E7%AA%97%E5%8F%A3%E5%BF%AB%E6%8D%B7%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">win10中运行窗口快捷命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-15 18:44:46 / 修改时间：19:01:33" itemprop="dateCreated datePublished" datetime="2020-12-15T18:44:46+08:00">2020-12-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>注册表中的位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/15/win10%E4%B8%AD%E8%BF%90%E8%A1%8C%E7%AA%97%E5%8F%A3%E5%BF%AB%E6%8D%B7%E5%91%BD%E4%BB%A4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/15/GlassFish%E5%B0%9D%E9%B2%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/15/GlassFish%E5%B0%9D%E9%B2%9C/" class="post-title-link" itemprop="url">GlassFish尝鲜</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-15 15:38:57 / 修改时间：20:08:09" itemprop="dateCreated datePublished" datetime="2020-12-15T15:38:57+08:00">2020-12-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>参考链接:</p>
+<p><a target="_blank" rel="noopener" href="https://www.timehorse.com/2020/10/15/how-to-install-glassfish/">https://www.timehorse.com/2020/10/15/how-to-install-glassfish/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/feiqiangsheng/p/11242397.html">https://www.cnblogs.com/feiqiangsheng/p/11242397.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://glassfish.org/">https://glassfish.org/</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/javaee/glassfish">https://github.com/javaee/glassfish</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/eclipse-ee4j/glassfish">https://github.com/eclipse-ee4j/glassfish</a></p>
+</blockquote>
+<p><strong>glassfish</strong> 是一个web服务器, 具有 <strong>tomcat</strong> 的功能.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/15/GlassFish%E5%B0%9D%E9%B2%9C/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -637,323 +980,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/11/%E4%BD%BF%E7%94%A8msys2%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E5%AE%89%E8%A3%85dig/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="foyou">
-      <meta itemprop="description" content="分享每一个问题">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="22:22">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/11/%E4%BD%BF%E7%94%A8msys2%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E5%AE%89%E8%A3%85dig/" class="post-title-link" itemprop="url">使用msys2包管理器安装dig</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-11 23:45:17" itemprop="dateCreated datePublished" datetime="2020-12-11T23:45:17+08:00">2020-12-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-12 12:54:39" itemprop="dateModified" datetime="2020-12-12T12:54:39+08:00">2020-12-12</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>参考: <a target="_blank" rel="noopener" href="https://www.msys2.org/docs/package-management/">https://www.msys2.org/docs/package-management/</a></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S ... <span class="comment"># 查了下, msys2 中没有这个包, 洗洗睡</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>$ pacman -h<br>用法:  pacman &lt;操作&gt; […]<br>操作:<br>    pacman {-h –help}<br>    pacman {-V –version}<br>    pacman {-D –database} &lt;选项&gt; &lt;软件包&gt;<br>    pacman {-F –files}    [选项] [软件包]<br>    pacman {-Q –query}    [选项] [软件包]<br>    pacman {-R –remove}   [选项] &lt;软件包&gt;<br>    pacman {-S –sync}     [选项] [软件包]<br>    pacman {-T –deptest}  [选项] [软件包]<br>    pacman {-U –upgrade}  [选项] &lt;文件&gt;</p>
-<p>使用 ‘pacman {-h –help}’ 及某个操作以查看可用选项</p>
-</blockquote>
-<h1 id="Cygwin安装dig"><a href="#Cygwin安装dig" class="headerlink" title="Cygwin安装dig"></a>Cygwin安装dig</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-cyg install bind-utils</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/11/Windows-Terminal%E9%85%8D%E7%BD%AECygwin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="foyou">
-      <meta itemprop="description" content="分享每一个问题">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="22:22">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/11/Windows-Terminal%E9%85%8D%E7%BD%AECygwin/" class="post-title-link" itemprop="url">Windows Terminal配置Cygwin</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-11 23:38:45" itemprop="dateCreated datePublished" datetime="2020-12-11T23:38:45+08:00">2020-12-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-12 12:37:51" itemprop="dateModified" datetime="2020-12-12T12:37:51+08:00">2020-12-12</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>编辑  <strong>Windows Terminal</strong> 配置文件</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&quot;list&quot;: [</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="attr">&quot;guid&quot;</span>: <span class="string">&quot;&#123;568420d9-dde3-42d9-9936-a3e2184bd808&#125;&quot;</span>,</span><br><span class="line">				<span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Cygwin64 Terminal&quot;</span>,</span><br><span class="line">				<span class="attr">&quot;commandline&quot;</span>: <span class="string">&quot;D:/DevelopPlatform/Cygwin/bin/bash.exe&quot;</span>,</span><br><span class="line">				<span class="attr">&quot;fontFace&quot;</span>: <span class="string">&quot;Lucida Console&quot;</span>,</span><br><span class="line">				<span class="attr">&quot;icon&quot;</span>: <span class="string">&quot;D:/DevelopPlatform/Cygwin/Cygwin.ico&quot;</span></span><br><span class="line">			&#125;,</span><br><span class="line">			...</span><br><span class="line">		]</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/11/%E5%B0%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D%E4%B8%8Evercel%E7%BB%91%E5%AE%9A/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="foyou">
-      <meta itemprop="description" content="分享每一个问题">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="22:22">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/11/%E5%B0%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D%E4%B8%8Evercel%E7%BB%91%E5%AE%9A/" class="post-title-link" itemprop="url">将自己的域名与vercel绑定</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-11 23:07:47" itemprop="dateCreated datePublished" datetime="2020-12-11T23:07:47+08:00">2020-12-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-12 21:25:20" itemprop="dateModified" datetime="2020-12-12T21:25:20+08:00">2020-12-12</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>大学时寝室号 <code>5512</code>, 当时 <code>host</code> 域名比较便宜, 于是购入一个 <code>5512.host</code>, 七十多五年, 真是香呀~</p>
-<p>现在还有八个月~</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/11/%E5%B0%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D%E4%B8%8Evercel%E7%BB%91%E5%AE%9A/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/11/VSCode%E4%B8%AD%E7%BB%88%E7%AB%AFCtrl-Backspace%E6%97%A0%E6%B3%95%E5%88%A0%E9%99%A4%E5%AD%97%E7%AC%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="foyou">
-      <meta itemprop="description" content="分享每一个问题">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="22:22">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/11/VSCode%E4%B8%AD%E7%BB%88%E7%AB%AFCtrl-Backspace%E6%97%A0%E6%B3%95%E5%88%A0%E9%99%A4%E5%AD%97%E7%AC%A6/" class="post-title-link" itemprop="url">VSCode中终端Ctrl+Backspace无法删除字符</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-12-11 22:41:57 / 修改时间：23:01:50" itemprop="dateCreated datePublished" datetime="2020-12-11T22:41:57+08:00">2020-12-11</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>参考: </p>
-<p><a target="_blank" rel="noopener" href="https://stackoom.com/question/3ZZRu/Visual-Studio%E4%BB%A3%E7%A0%81-Ctrl-Backspace%E5%9C%A8Integrated-Terminal%E4%B8%AD%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8">https://stackoom.com/question/3ZZRu/Visual-Studio%E4%BB%A3%E7%A0%81-Ctrl-Backspace%E5%9C%A8Integrated-Terminal%E4%B8%AD%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/PowerShell/PowerShell/issues/11751">https://github.com/PowerShell/PowerShell/issues/11751</a></p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/11/VSCode%E4%B8%AD%E7%BB%88%E7%AB%AFCtrl-Backspace%E6%97%A0%E6%B3%95%E5%88%A0%E9%99%A4%E5%AD%97%E7%AC%A6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
