@@ -162,12 +162,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">228</span>
+        <span class="site-state-item-count">229</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -199,6 +199,152 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/18/%E4%B8%BAWindows-Terminal%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/18/%E4%B8%BAWindows-Terminal%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/" class="post-title-link" itemprop="url">为Windows Terminal添加右键菜单</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-18 12:00:56 / 修改时间：14:43:59" itemprop="dateCreated datePublished" datetime="2020-12-18T12:00:56+08:00">2020-12-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="复制代码到powershell中"><a href="#复制代码到powershell中" class="headerlink" title="复制代码到powershell中"></a>复制代码到powershell中</h1><h2 id="powershell7"><a href="#powershell7" class="headerlink" title="powershell7"></a>powershell7</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$wt_reg</span>=<span class="string">&quot;<span class="variable">$env:TEMP</span>\<span class="variable">$</span>((Get-Date).Ticks).reg&quot;</span></span><br><span class="line"><span class="built_in">Set-Content</span> <span class="literal">-Path</span> <span class="variable">$wt_reg</span> <span class="string">&#x27;Windows Registry Editor Version 5.00</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt]</span></span><br><span class="line"><span class="string">@=&quot;Windows Terminal(&amp;Z)&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt\command]</span></span><br><span class="line"><span class="string">@=&quot;wt pwsh -wd \&quot;%V\&quot;&quot;</span></span><br><span class="line"><span class="string">&#x27;</span></span><br><span class="line">REG IMPORT <span class="variable">$wt_reg</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Windows-Powershell"><a href="#Windows-Powershell" class="headerlink" title="Windows Powershell"></a>Windows Powershell</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$wt_reg</span>=<span class="string">&quot;<span class="variable">$env:TEMP</span>\<span class="variable">$</span>((Get-Date).Ticks).reg&quot;</span></span><br><span class="line"><span class="built_in">Set-Content</span> <span class="literal">-Path</span> <span class="variable">$wt_reg</span> <span class="string">&#x27;Windows Registry Editor Version 5.00</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt]</span></span><br><span class="line"><span class="string">@=&quot;Windows Terminal(&amp;Z)&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt\command]</span></span><br><span class="line"><span class="string">@=&quot;wt powershell -NoLogo -NoExit -Command &amp;&#123;Set-Location &#x27;</span><span class="string">&#x27;%V&#x27;</span><span class="string">&#x27;&#125;&quot;</span></span><br><span class="line"><span class="string">&#x27;</span></span><br><span class="line">REG IMPORT <span class="variable">$wt_reg</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/16/%E5%85%B3%E4%BA%8Ewin10%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/16/%E5%85%B3%E4%BA%8Ewin10%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" class="post-title-link" itemprop="url">关于win10的环境变量</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-16 14:17:35 / 修改时间：15:56:31" itemprop="dateCreated datePublished" datetime="2020-12-16T14:17:35+08:00">2020-12-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="win10中有两种环境变量"><a href="#win10中有两种环境变量" class="headerlink" title="win10中有两种环境变量"></a>win10中有两种环境变量</h1><ol>
+<li>用户变量, 只针对当前用户有效</li>
+<li>系统变量</li>
+</ol>
+<p><img src="/images/image-20201216142229038.png" alt="image-20201216142229038"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/16/%E5%85%B3%E4%BA%8Ewin10%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -809,160 +955,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/12/%E9%80%9A%E8%BF%87dig%E6%8C%87%E5%AE%9Adns%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="foyou">
-      <meta itemprop="description" content="分享每一个问题">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="22:22">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/12/%E9%80%9A%E8%BF%87dig%E6%8C%87%E5%AE%9Adns%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D/" class="post-title-link" itemprop="url">通过dig指定dns解析域名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-12-12 12:57:55 / 修改时间：21:25:20" itemprop="dateCreated datePublished" datetime="2020-12-12T12:57:55+08:00">2020-12-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dig @ns11.xincache.com 5512.host</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/image-20201212135358934.png" alt="image-20201212135358934"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/11/%E4%BD%BF%E7%94%A8msys2%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E5%AE%89%E8%A3%85dig/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="foyou">
-      <meta itemprop="description" content="分享每一个问题">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="22:22">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/11/%E4%BD%BF%E7%94%A8msys2%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E5%AE%89%E8%A3%85dig/" class="post-title-link" itemprop="url">使用msys2包管理器安装dig</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-11 23:45:17" itemprop="dateCreated datePublished" datetime="2020-12-11T23:45:17+08:00">2020-12-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-12 12:54:39" itemprop="dateModified" datetime="2020-12-12T12:54:39+08:00">2020-12-12</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>参考: <a target="_blank" rel="noopener" href="https://www.msys2.org/docs/package-management/">https://www.msys2.org/docs/package-management/</a></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S ... <span class="comment"># 查了下, msys2 中没有这个包, 洗洗睡</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>$ pacman -h<br>用法:  pacman &lt;操作&gt; […]<br>操作:<br>    pacman {-h –help}<br>    pacman {-V –version}<br>    pacman {-D –database} &lt;选项&gt; &lt;软件包&gt;<br>    pacman {-F –files}    [选项] [软件包]<br>    pacman {-Q –query}    [选项] [软件包]<br>    pacman {-R –remove}   [选项] &lt;软件包&gt;<br>    pacman {-S –sync}     [选项] [软件包]<br>    pacman {-T –deptest}  [选项] [软件包]<br>    pacman {-U –upgrade}  [选项] &lt;文件&gt;</p>
-<p>使用 ‘pacman {-h –help}’ 及某个操作以查看可用选项</p>
-</blockquote>
-<h1 id="Cygwin安装dig"><a href="#Cygwin安装dig" class="headerlink" title="Cygwin安装dig"></a>Cygwin安装dig</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-cyg install bind-utils</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

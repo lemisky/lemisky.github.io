@@ -162,12 +162,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">228</span>
+        <span class="site-state-item-count">229</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -207,7 +207,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2021/02/27/python%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2021/04/18/robots-txt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -221,7 +221,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/02/27/python%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">python多任务并发编程</a>
+            <a href="/2021/04/18/robots-txt/" class="post-title-link" itemprop="url">robots.txt</a>
         </h2>
 
         <div class="post-meta-container">
@@ -233,8 +233,178 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-02-27 00:11:57 / 修改时间：00:42:51" itemprop="dateCreated datePublished" datetime="2021-02-27T00:11:57+08:00">2021-02-27</time>
+      <time title="创建时间：2021-04-18 22:52:57 / 修改时间：23:03:01" itemprop="dateCreated datePublished" datetime="2021-04-18T22:52:57+08:00">2021-04-18</time>
     </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="robots-txt和服务协议"><a href="#robots-txt和服务协议" class="headerlink" title="robots.txt和服务协议"></a>robots.txt和服务协议</h1><p>[摘自: Python网络爬虫权威指南 第二版]</p>
+<p>​        从法理上说，网站的服务协议和robots.txt是很有趣的。如果一个网站允许公众接入，那么网站管理员对哪些软件可以接入而哪些软件不可以接入的限制是不合理的。如果网站管理员对你说，“你用浏览器访问网站没问题，但是你用自己写的程序访问它就不行”，这就不太靠谱了。</p>
+<p>​        大多数网站在每页的页脚都有自己的服务协议链接。服务协议不仅包含网络爬虫和自动接入的规则，而且还包括网站收集的信息类型和信息用途，通常还有一条免责声明，表明对网站提供的服务不做任何明示或默示保证。</p>
+<p>​        如果你对搜索引擎优化（search engine optimization，SEO）或搜索引擎技术感兴趣，那么你可能听说过robots.txt文件。如果你想在任何大型网站上查找robots.txt文件，可以在网站根目录<a target="_blank" rel="noopener" href="http://website.com/robots.txt%E6%89%BE%E5%88%B0%E3%80%82">http://website.com/robots.txt找到。</a></p>
+<p>​        robots.txt文件的语法是在1994年出现的，那时搜索引擎技术刚刚兴起。当时，从整个互联网寻找资源的搜索引擎，比如AltaVista和DogPile，开始和那些按照主题对网站进行分类的门户网站激烈竞争，比如Yahoo!。互联网搜索规模的增长不仅意味着网络爬虫数量的增长，而且也意味着网络爬虫收集的信息对普通人而言的可供性大大增强了。</p>
+<p>​        虽然我们今天认为这种可用性是稀松平常的，但在当时，当网站文件结构深处隐藏的信息出现在主要搜索引擎的搜索结果首页中时，有些网站管理员感到非常震惊。于是，robots.txt文件的语法，也称为机器人排除标准（Robots Exclusion Standard），应运而生。</p>
+<p>​        与通常用人类语言宽泛地讨论网络爬虫的服务协议不同，robots.txt文件可以被自动化程序轻易地解析和使用。虽然它似乎可以一劳永逸地解决爬虫问题，但是请注意下面两点。</p>
+<p>• robots.txt文件的语法没有标准格式。它是一种常用并被良好遵循的规范，但是并未阻止任何人创建自己的robots.txt文件（且不说除非它变成主流标准，否则网络机器人就不会承认或遵循它）。尽管如此，它仍是一种被企业广泛认可的规范，主要是因为它非常简单，而且企业也没什么动力去开发自己的版本或者尝试去改进它。</p>
+<p>• robots.txt文件并不是一个强制性约束。它只是说“请不要抓网站的这些内容”。很多网络爬虫库都支持robots.txt文件（虽然这通常是个很容易修改的默认设置）。另外，按照robots.txt文件抓取信息比直接抓取要麻烦得多（毕竟，你需要抓取、分析并在代码逻辑中处理页面内容）。</p>
+<p>​        机器人排除标准的语法很简单。和Python等语言一样，注释都是用#号开头，用换行符结尾，可以用在文件的任意位置。</p>
+<p>​        文件的第一行非注释内容是User-agent:，注明具体哪些机器人需要遵守规则。后面是一组规则，要么是Allow:要么是Disallow:，决定了是否允许机器人访问网站的该部分内容。星号（*）是通配符，可以用于User-agent:，也可以用于URL链接中。</p>
+<p>​        如果一条规则后面跟着一个与之矛盾的规则，则按后一条规则执行。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#Welcome to my robots.txt file! </span><br><span class="line">User-agent: * </span><br><span class="line">Disallow: * </span><br><span class="line">User-agent: Googlebot </span><br><span class="line">Allow: * </span><br><span class="line">Disallow: &#x2F;private</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，所有的机器人都被禁止访问网站的任何内容，除了Google的网络机器人，它可以访问网站上除/private位置之外的所有内容。</p>
+<p>​        Twitter的robots.txt文件对Google、Yahoo!、Yandex（俄罗斯著名搜索引擎）、微软，以及其他机器人或搜索引擎的访问范围都有明确的说明。Google搜索（和其他机器人的访问范围一样）的内容如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#Google Search Engine Robot </span><br><span class="line">User-agent: Googlebot </span><br><span class="line">Allow: &#x2F;?_escaped_fragment_ </span><br><span class="line">Allow: &#x2F;?lang&#x3D; </span><br><span class="line">Allow: &#x2F;hashtag&#x2F;*?src&#x3D; </span><br><span class="line">Allow: &#x2F;search?q&#x3D;%23 </span><br><span class="line">Disallow: &#x2F;search&#x2F;realtime </span><br><span class="line">Disallow: &#x2F;search&#x2F;users </span><br><span class="line">Disallow: &#x2F;search&#x2F;*&#x2F;grid </span><br><span class="line">Disallow: &#x2F;*? </span><br><span class="line">Disallow: &#x2F;*&#x2F;followers </span><br><span class="line">Disallow: &#x2F;*&#x2F;following</span><br></pre></td></tr></table></figure>
+
+<p>注意，Twitter限制访问其网站中有API的部分。因为Twitter有一个管理良好的API（并且可以通过授权赚到钱），所以禁止任何“自制API”通过独立抓取其网站来收集信息对Twitter最为有利。</p>
+<p>​        虽然看到一个指明爬虫抓取范围的文件让人感觉很憋屈，但是它其实可以成为网络爬虫开发的指示灯。如果你发现一个robots.txt文件禁止抓取网站上某个部分的内容，那么基本可以确定网管同意你抓取其他部分的所有内容（如果他们不愿意让你抓取，就会在robots.txt文件中明令禁止了）。</p>
+<p>​        例如，维基百科的robots.txt文件中适用于一般网络爬虫（并非搜索引擎）的部分非常宽容。它甚至用人类可以阅读的文字来欢迎机器人抓取（适合我们的爬虫！），并且只禁止访问一小部分页面，比如登录页面、搜索页面和“随机词条”页面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># Friendly, low-speed bots are welcome viewing article pages, but not </span><br><span class="line"># dynamically generated pages please. </span><br><span class="line"># </span><br><span class="line"># Inktomi&#39;s &quot;Slurp&quot; can read a minimum delay between hits; if your bot supports </span><br><span class="line"># such a thing using the &#39;Crawl-delay&#39; or another instruction, please let us </span><br><span class="line"># know. </span><br><span class="line"># </span><br><span class="line"># There is a special exception for API mobileview to allow dynamic mobile web &amp; </span><br><span class="line"># app views to load section content. </span><br><span class="line"># These views aren&#39;t HTTP-cached but use parser cache aggressively and don&#39;t </span><br><span class="line"># expose special: pages etc. </span><br><span class="line"># </span><br><span class="line">User-agent: * </span><br><span class="line">Allow: &#x2F;w&#x2F;api.php?action&#x3D;mobileview&amp; </span><br><span class="line">Disallow: &#x2F;w&#x2F; </span><br><span class="line">Disallow: &#x2F;trap&#x2F; </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Especial:Search </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Especial%3ASearch </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Special:Collection </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Spezial:Sammlung </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Special:Random </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Special%3ARandom </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Special:Search </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Special%3ASearch </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Spesial:Search </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Spesial%3ASearch </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Spezial:Search </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Spezial%3ASearch </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Specjalna:Search </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Specjalna%3ASearch </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Speciaal:Search </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Speciaal%3ASearch </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Speciaal:Random </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Speciaal%3ARandom </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Speciel:Search </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Speciel%3ASearch </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Speciale:Search </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Speciale%3ASearch </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Istimewa:Search </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Istimewa%3ASearch </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Toiminnot:Search </span><br><span class="line">Disallow: &#x2F;wiki&#x2F;Toiminnot%3ASearch</span><br></pre></td></tr></table></figure>
+
+<p>​        是否遵照robots.txt文件的要求写网络爬虫由你自己决定，但是我强烈建议你遵守，尤其是你的爬虫不加选择地抓取网页的时候。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2021/03/25/Android%E4%BF%AE%E6%94%B9%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/25/Android%E4%BF%AE%E6%94%B9%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">Android修改时间同步服务器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-25 18:38:11 / 修改时间：18:40:06" itemprop="dateCreated datePublished" datetime="2021-03-25T18:38:11+08:00">2021-03-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>解决<br>尝试在Android上运行（需root）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su</span><br><span class="line">settings put global ntp_server ntp1.aliyun.com</span><br></pre></td></tr></table></figure>
+
+
+<p>或是在ADB上运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell &quot;settings put global ntp_server ntp1.aliyun.com&quot;</span><br></pre></td></tr></table></figure>
+
+
+<p>由于Android的时间同步服务并不是时刻运行的，可尝试重启后开关一下自动同步时间，应该就会生效了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2021/02/27/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="foyou">
+      <meta itemprop="description" content="分享每一个问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="22:22">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/27/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">Python多任务并发编程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-27 00:11:57" itemprop="dateCreated datePublished" datetime="2021-02-27T00:11:57+08:00">2021-02-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-27 15:57:58" itemprop="dateModified" datetime="2021-04-27T15:57:58+08:00">2021-04-27</time>
+      </span>
 
   
 </div>
@@ -255,7 +425,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">lib = cdll.LoadLibrary(<span class="string">&#x27;libdemo.so&#x27;</span>)</span><br><span class="line"></span><br><span class="line">th = threading.Thread(target=lib.deadlock)</span><br><span class="line"></span><br><span class="line">th.start()</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/02/27/python%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/#more" rel="contents">
+              <a class="btn" href="/2021/02/27/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -808,156 +978,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/18/%E4%B8%BAWindows-Terminal%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="foyou">
-      <meta itemprop="description" content="分享每一个问题">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="22:22">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/18/%E4%B8%BAWindows-Terminal%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/" class="post-title-link" itemprop="url">为Windows Terminal添加右键菜单</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-12-18 12:00:56 / 修改时间：14:43:59" itemprop="dateCreated datePublished" datetime="2020-12-18T12:00:56+08:00">2020-12-18</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="复制代码到powershell中"><a href="#复制代码到powershell中" class="headerlink" title="复制代码到powershell中"></a>复制代码到powershell中</h1><h2 id="powershell7"><a href="#powershell7" class="headerlink" title="powershell7"></a>powershell7</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$wt_reg</span>=<span class="string">&quot;<span class="variable">$env:TEMP</span>\<span class="variable">$</span>((Get-Date).Ticks).reg&quot;</span></span><br><span class="line"><span class="built_in">Set-Content</span> <span class="literal">-Path</span> <span class="variable">$wt_reg</span> <span class="string">&#x27;Windows Registry Editor Version 5.00</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt]</span></span><br><span class="line"><span class="string">@=&quot;Windows Terminal(&amp;Z)&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt\command]</span></span><br><span class="line"><span class="string">@=&quot;wt pwsh -wd \&quot;%V\&quot;&quot;</span></span><br><span class="line"><span class="string">&#x27;</span></span><br><span class="line">REG IMPORT <span class="variable">$wt_reg</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="Windows-Powershell"><a href="#Windows-Powershell" class="headerlink" title="Windows Powershell"></a>Windows Powershell</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$wt_reg</span>=<span class="string">&quot;<span class="variable">$env:TEMP</span>\<span class="variable">$</span>((Get-Date).Ticks).reg&quot;</span></span><br><span class="line"><span class="built_in">Set-Content</span> <span class="literal">-Path</span> <span class="variable">$wt_reg</span> <span class="string">&#x27;Windows Registry Editor Version 5.00</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt]</span></span><br><span class="line"><span class="string">@=&quot;Windows Terminal(&amp;Z)&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt\command]</span></span><br><span class="line"><span class="string">@=&quot;wt powershell -NoLogo -NoExit -Command &amp;&#123;Set-Location &#x27;</span><span class="string">&#x27;%V&#x27;</span><span class="string">&#x27;&#125;&quot;</span></span><br><span class="line"><span class="string">&#x27;</span></span><br><span class="line">REG IMPORT <span class="variable">$wt_reg</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lemisky.github.io/2020/12/16/%E5%85%B3%E4%BA%8Ewin10%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="foyou">
-      <meta itemprop="description" content="分享每一个问题">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="22:22">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/16/%E5%85%B3%E4%BA%8Ewin10%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" class="post-title-link" itemprop="url">关于win10的环境变量</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-12-16 14:17:35 / 修改时间：15:56:31" itemprop="dateCreated datePublished" datetime="2020-12-16T14:17:35+08:00">2020-12-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="win10中有两种环境变量"><a href="#win10中有两种环境变量" class="headerlink" title="win10中有两种环境变量"></a>win10中有两种环境变量</h1><ol>
-<li>用户变量, 只针对当前用户有效</li>
-<li>系统变量</li>
-</ol>
-<p><img src="/images/image-20201216142229038.png" alt="image-20201216142229038"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/16/%E5%85%B3%E4%BA%8Ewin10%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
